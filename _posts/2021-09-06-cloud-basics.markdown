@@ -45,13 +45,13 @@ Because it's a small project I can cope with a low-end server, which in this cas
 
 **Microsoft Azure**: $100.06/month\
 **Google Cloud**: $54.30/month\
-**Amazon Web Services**: $32.79/month\
+**Amazon Web Services**: $32.79/month
 
 # Three "smaller" companies
 
 **Hetzner**: $12.57/month (limited to 20TB traffic)\
 **Linode**: $40.00/month (upgraded to 4 core CPU, 160GB storage, limited to 5TB traffic)\
-**DigitalOcean**: $48/month (upgrade to 4 core CPU, 160GB storage, limited to 5TB traffic)\
+**DigitalOcean**: $48/month (upgrade to 4 core CPU, 160GB storage, limited to 5TB traffic)
 
 As you can see, the difference is pretty noticeable amongst different hosting providers. In the end there is no perfect hosting solution to any project and you will have to do your research if you want to avoid spending way more than you need. Cloud hosting is however here and it's here to stay.
 
