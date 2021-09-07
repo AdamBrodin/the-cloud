@@ -21,13 +21,13 @@
 title: The Cloud
 email: adambrodindeveloper@gmail.com
 description: A blog about the cloud and its services.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://adambrodin.github.io/the-cloud/" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/the-cloud" # the subpath of your site, e.g. /blog
+url: "https://adambrodin.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: brodinadam
 github_username: AdamBrodin
 
 # Build settings
-theme: minima
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 # Exclude from processing.
