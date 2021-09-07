@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-06T15:38:50+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud basics</title><link href="http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics.html" rel="alternate" type="text/html" title="Cloud basics" /><published>2021-09-06T14:14:04+02:00</published><updated>2021-09-06T14:14:04+02:00</updated><id>http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics</id><content type="html" xml:base="http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics.html">&lt;h1 id=&quot;the-cloud&quot;&gt;The cloud.&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-07T15:26:45+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud basics</title><link href="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html" rel="alternate" type="text/html" title="Cloud basics" /><published>2021-09-06T14:14:04+02:00</published><updated>2021-09-06T14:14:04+02:00</updated><id>http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html">&lt;h1 id=&quot;the-cloud&quot;&gt;The cloud.&lt;/h1&gt;
 
 &lt;p&gt;What is it? How does it work?&lt;/p&gt;
 
@@ -60,13 +60,13 @@ Because it’s a small project I can cope with a low-end server, which in this c
 
 &lt;p&gt;&lt;strong&gt;Microsoft Azure&lt;/strong&gt;: $100.06/month&lt;br /&gt;
 &lt;strong&gt;Google Cloud&lt;/strong&gt;: $54.30/month&lt;br /&gt;
-&lt;strong&gt;Amazon Web Services&lt;/strong&gt;: $32.79/month\&lt;/p&gt;
+&lt;strong&gt;Amazon Web Services&lt;/strong&gt;: $32.79/month&lt;/p&gt;
 
 &lt;h1 id=&quot;three-smaller-companies&quot;&gt;Three “smaller” companies&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Hetzner&lt;/strong&gt;: $12.57/month (limited to 20TB traffic)&lt;br /&gt;
 &lt;strong&gt;Linode&lt;/strong&gt;: $40.00/month (upgraded to 4 core CPU, 160GB storage, limited to 5TB traffic)&lt;br /&gt;
-&lt;strong&gt;DigitalOcean&lt;/strong&gt;: $48/month (upgrade to 4 core CPU, 160GB storage, limited to 5TB traffic)\&lt;/p&gt;
+&lt;strong&gt;DigitalOcean&lt;/strong&gt;: $48/month (upgrade to 4 core CPU, 160GB storage, limited to 5TB traffic)&lt;/p&gt;
 
 &lt;p&gt;As you can see, the difference is pretty noticeable amongst different hosting providers. In the end there is no perfect hosting solution to any project and you will have to do your research if you want to avoid spending way more than you need. Cloud hosting is however here and it’s here to stay.&lt;/p&gt;
 
