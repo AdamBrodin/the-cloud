@@ -28,7 +28,7 @@ github_username: AdamBrodin
 
 # Build settings
 theme: jekyll-theme-minimal
-remote_theme: "mmistakes/minimal-mistakes@4.13.0"
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
