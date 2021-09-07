@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-06T15:38:50+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud basics</title><link href="http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics.html" rel="alternate" type="text/html" title="Cloud basics" /><published>2021-09-06T14:14:04+02:00</published><updated>2021-09-06T14:14:04+02:00</updated><id>http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics</id><content type="html" xml:base="http://localhost:4000/cloud/servers/computing/2021/09/06/cloud-basics.html">&lt;h1 id=&quot;the-cloud&quot;&gt;The cloud.&lt;/h1&gt;
+
+&lt;p&gt;What is it? How does it work?&lt;/p&gt;
+
+&lt;p&gt;In its core, &lt;strong&gt;the cloud&lt;/strong&gt; is essentially just a bunch of computers bundled together in a big server room, also known as a &lt;strong&gt;datacenter&lt;/strong&gt;.
+These computers, or &lt;strong&gt;servers&lt;/strong&gt; rather execute certain operations, store data and do many tasks that a normal person wouldn’t really think about, it just works, in the background.&lt;/p&gt;
+
+&lt;p&gt;Say for example you develop an app, your app gets a lot of attention and therefore a lot of users that have data to store. Where do you store this data?
+Sure, you could bring one of your old computers back to life and host your own server on it, but it would most likely be slow, hot, take up space and slow down your Wi-Fi.&lt;/p&gt;
+
+&lt;p&gt;The solution; &lt;strong&gt;datacenters&lt;/strong&gt;. If you would instead pay a company to host this server for you, a lot of these issues would be resolved. But are there really only good things to come from the cloud? What advantages, and disadvantages does it hold?&lt;/p&gt;
+
+&lt;p&gt;Let’s start with the main &lt;strong&gt;advantages&lt;/strong&gt; of renting a server in the &lt;strong&gt;cloud&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Convenience&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Your server would be running 24/7, 365 days a year with pretty much no downtime ever.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;No maintenance&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Datacenters and their maintenance costs, repairing servers, cleaning out dust, switching out parts is all covered by your fee. Where as if your own server broke, you would have to resolve the situation on your own. With a cloud server, all you have to think about is your project.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Scaling&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;With a cloud server you can easily scale up and down however you’d like. More users than expected? Not a problem, in one click your server is upgraded. Users spread out across the world? No problem, you can have several servers through the world to satisfy all users, regardless of where they live.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even though &lt;strong&gt;the cloud&lt;/strong&gt; is amazing, there are still some caveats to consider.
+These are the main &lt;strong&gt;disadvantages&lt;/strong&gt; to renting a server in the &lt;strong&gt;cloud&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Cost&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Cloud computing and cloud servers can be expensive. Regardless of your project size you should have a plan and consider the two alternatives (cloud vs self hosting). If you have a really small project you might not even need a server at all, you could probably get by using some free technologies out there such as Firebase. On the other hand if your project is really big and serious you might end up saving money by hosting yourself even though the upfront cost is very big.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;The cloud is all around considered to be very secure, use the latest technologies, so on and so forth. But the cloud is only as secure as you make it. If you have poor knowledge when dealing with your data and servers you might create security flaws and thereby grant unauthorized access from people with bad intentions.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Privacy&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;This last issue ties together pretty well with security and for good reason, if you can’t keep your data secure, you’ll have no privacy. Privacy is more than just getting your data “leaked” though, you’ll have to consider things like what hosting company you use, do you trust them? It might seem enticing to host a server from the cheapest company there is, but are you certain they’re using sophisticated security measures? And that they don’t have access to your data?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the end, in my opinion, modern cloud computing and cloud servers positive side strongly outweigh the negative. But before you make up your mind, let’s see a price example of how much it actually costs to rent a server.&lt;/p&gt;
+
+&lt;p&gt;Let’s for the sake of things imagine I have a small web project and I need a server along with some storage.
+Because it’s a small project I can cope with a low-end server, which in this case equates to a 2-Core CPU, 8GB RAM and 10GB of storage. I’m going to be comparing the three giants (Microsoft Azure, Google Cloud &amp;amp; Amazon Web Services) along with some “smaller” companies.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-three-giants&quot;&gt;The three giants&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Microsoft Azure&lt;/strong&gt;: $100.06/month&lt;br /&gt;
+&lt;strong&gt;Google Cloud&lt;/strong&gt;: $54.30/month&lt;br /&gt;
+&lt;strong&gt;Amazon Web Services&lt;/strong&gt;: $32.79/month\&lt;/p&gt;
+
+&lt;h1 id=&quot;three-smaller-companies&quot;&gt;Three “smaller” companies&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Hetzner&lt;/strong&gt;: $12.57/month (limited to 20TB traffic)&lt;br /&gt;
+&lt;strong&gt;Linode&lt;/strong&gt;: $40.00/month (upgraded to 4 core CPU, 160GB storage, limited to 5TB traffic)&lt;br /&gt;
+&lt;strong&gt;DigitalOcean&lt;/strong&gt;: $48/month (upgrade to 4 core CPU, 160GB storage, limited to 5TB traffic)\&lt;/p&gt;
+
+&lt;p&gt;As you can see, the difference is pretty noticeable amongst different hosting providers. In the end there is no perfect hosting solution to any project and you will have to do your research if you want to avoid spending way more than you need. Cloud hosting is however here and it’s here to stay.&lt;/p&gt;
+
+&lt;p&gt;I hope this blog post has given you a little bit of insight into what goes on in “the cloud” and the reasons why it exists. Thanks for reading!&lt;/p&gt;
+
+&lt;h1 id=&quot;written-by&quot;&gt;Written by&lt;/h1&gt;
+
+&lt;h1 id=&quot;adam-brodin&quot;&gt;&lt;strong&gt;Adam Brodin&lt;/strong&gt;&lt;/h1&gt;</content><author><name></name></author><category term="cloud" /><category term="servers" /><category term="computing" /><summary type="html">The cloud.</summary></entry></feed>
