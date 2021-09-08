@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Continuous Integration with Github Actions | The Cloud</title>
+<title>Continuous Integration with GitHub Actions | The Cloud</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Continuous Integration with Github Actions" />
+<meta property="og:title" content="Continuous Integration with GitHub Actions" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Continuous Integration" />
 <meta property="og:description" content="Continuous Integration" />
@@ -19,9 +19,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-09-08T01:07:53+02:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Continuous Integration with Github Actions" />
+<meta property="twitter:title" content="Continuous Integration with GitHub Actions" />
 <script type="application/ld+json">
-{"headline":"Continuous Integration with Github Actions","dateModified":"2021-09-08T01:07:53+02:00","datePublished":"2021-09-08T01:07:53+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html"},"description":"Continuous Integration","url":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html","@context":"https://schema.org"}</script>
+{"headline":"Continuous Integration with GitHub Actions","dateModified":"2021-09-08T01:07:53+02:00","datePublished":"2021-09-08T01:07:53+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html"},"description":"Continuous Integration","url":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -103,7 +103,7 @@
 
   <header class="post-header">
 
-    <h1 class="post-title p-name" itemprop="name headline">Continuous Integration with Github Actions</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Continuous Integration with GitHub Actions</h1>
     <p class="post-meta"><time class="dt-published" datetime="2021-09-08T01:07:53+02:00" itemprop="datePublished">
         Sep 8, 2021
       </time></p>
@@ -129,13 +129,13 @@
 
 <h1 id="an-actual-example">An actual example</h1>
 
-<p>I have a <a href="https://github.com/AdamBrodin/spacepark-spacepark-group3">project</a> where I want to run a certain action everytime I commit to it. How would I do this?
+<p>I have a <a href="https://GitHub.com/AdamBrodin/spacepark-spacepark-group3">project</a> where I want to run a certain action everytime I commit to it. How would I do this?
 To execute your action you need a <strong>workflow</strong> file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you’ll find it rather easy.
-You can execute your <strong>CI</strong> operations &amp; actions anywhere and anyhow you’d like but in this example im going to be using <strong>Github Actions</strong>.</p>
+You can execute your <strong>CI</strong> operations &amp; actions anywhere and anyhow you’d like but in this example im going to be using <strong>GitHub Actions</strong>.</p>
 
-<h1 id="github-actions">Github Actions</h1>
+<h1 id="github-actions">GitHub Actions</h1>
 
-<p>With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our <strong>workflow file</strong> is. This directory should be called <strong>.github/workflows/YOUR_WORKFLOW_NAME</strong>.
+<p>With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our <strong>workflow file</strong> is. This directory should be called <strong>.GitHub/workflows/YOUR_WORKFLOW_NAME</strong>.
 Once you’ve created that directory, create your <strong>workflow file</strong> in that directory and name it anything you’d like.</p>
 
 <p>To explain how to structure your <strong>workflow file</strong> im going to show you the finished file first.</p>
@@ -179,10 +179,10 @@ Once you’ve created that directory, create your <strong>workflow file</strong>
 </code></pre></div></div>
 
 <p>And that’s it! If you followed along this far on your own you have successfully integrated a very simple version of <strong>continuous integration</strong> in your own project.
-After you’ve commit something you can head over to the <strong>“actions”</strong> tab on your repository and you should see something like this:<br />
-<img src="/assets/images/workflow_run.png" alt="Workflow Run" />
+After you’ve commit something you can head over to the <strong>“actions”</strong> tab on your repository and you should see something like this:
+<img src="https://i.ibb.co/z8LQLN6/workflow-run.png" alt="Workflow Run" />
 And if you click on your <strong>workflow run</strong> you can see the status (or finished result) of your job, which looks something like this:
-<img src="/assets/images/job_output.png" alt="Job output" /></p>
+<img src="https://i.ibb.co/8Kr77CL/job-output.png" alt="Job output" /></p>
 
 <p>Thank you for reading this post, this was just a very simple example of <strong>CI</strong> but I still hope you have learned something about <strong>continuous integration</strong>, why to use it and most importantly how to implement it.</p>
 

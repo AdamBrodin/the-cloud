@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-08T02:26:27+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Integration with Github Actions</title><link href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" rel="alternate" type="text/html" title="Continuous Integration with Github Actions" /><published>2021-09-08T01:07:53+02:00</published><updated>2021-09-08T01:07:53+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html">&lt;h1 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-08T02:35:03+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Integration with GitHub Actions</title><link href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" rel="alternate" type="text/html" title="Continuous Integration with GitHub Actions" /><published>2021-09-08T01:07:53+02:00</published><updated>2021-09-08T01:07:53+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html">&lt;h1 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h1&gt;
 
 &lt;p&gt;You might’ve heard terms like &lt;strong&gt;CI/CD&lt;/strong&gt; or &lt;strong&gt;continuous integration/continuous deployment&lt;/strong&gt; before, and wondered, what is it? To put things simply, &lt;strong&gt;CI&lt;/strong&gt; is a means of automating tasks in your project, CI could for instance be triggered everytime you commit to a branch.&lt;/p&gt;
 
@@ -16,13 +16,13 @@
 
 &lt;h1 id=&quot;an-actual-example&quot;&gt;An actual example&lt;/h1&gt;
 
-&lt;p&gt;I have a &lt;a href=&quot;https://github.com/AdamBrodin/spacepark-spacepark-group3&quot;&gt;project&lt;/a&gt; where I want to run a certain action everytime I commit to it. How would I do this?
+&lt;p&gt;I have a &lt;a href=&quot;https://GitHub.com/AdamBrodin/spacepark-spacepark-group3&quot;&gt;project&lt;/a&gt; where I want to run a certain action everytime I commit to it. How would I do this?
 To execute your action you need a &lt;strong&gt;workflow&lt;/strong&gt; file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you’ll find it rather easy.
-You can execute your &lt;strong&gt;CI&lt;/strong&gt; operations &amp;amp; actions anywhere and anyhow you’d like but in this example im going to be using &lt;strong&gt;Github Actions&lt;/strong&gt;.&lt;/p&gt;
+You can execute your &lt;strong&gt;CI&lt;/strong&gt; operations &amp;amp; actions anywhere and anyhow you’d like but in this example im going to be using &lt;strong&gt;GitHub Actions&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h1 id=&quot;github-actions&quot;&gt;Github Actions&lt;/h1&gt;
+&lt;h1 id=&quot;github-actions&quot;&gt;GitHub Actions&lt;/h1&gt;
 
-&lt;p&gt;With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our &lt;strong&gt;workflow file&lt;/strong&gt; is. This directory should be called &lt;strong&gt;.github/workflows/YOUR_WORKFLOW_NAME&lt;/strong&gt;.
+&lt;p&gt;With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our &lt;strong&gt;workflow file&lt;/strong&gt; is. This directory should be called &lt;strong&gt;.GitHub/workflows/YOUR_WORKFLOW_NAME&lt;/strong&gt;.
 Once you’ve created that directory, create your &lt;strong&gt;workflow file&lt;/strong&gt; in that directory and name it anything you’d like.&lt;/p&gt;
 
 &lt;p&gt;To explain how to structure your &lt;strong&gt;workflow file&lt;/strong&gt; im going to show you the finished file first.&lt;/p&gt;
@@ -66,10 +66,10 @@ Once you’ve created that directory, create your &lt;strong&gt;workflow file&lt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And that’s it! If you followed along this far on your own you have successfully integrated a very simple version of &lt;strong&gt;continuous integration&lt;/strong&gt; in your own project.
-After you’ve commit something you can head over to the &lt;strong&gt;“actions”&lt;/strong&gt; tab on your repository and you should see something like this:&lt;br /&gt;
-&lt;img src=&quot;/assets/images/workflow_run.png&quot; alt=&quot;Workflow Run&quot; /&gt;
+After you’ve commit something you can head over to the &lt;strong&gt;“actions”&lt;/strong&gt; tab on your repository and you should see something like this:
+&lt;img src=&quot;https://i.ibb.co/z8LQLN6/workflow-run.png&quot; alt=&quot;Workflow Run&quot; /&gt;
 And if you click on your &lt;strong&gt;workflow run&lt;/strong&gt; you can see the status (or finished result) of your job, which looks something like this:
-&lt;img src=&quot;/assets/images/job_output.png&quot; alt=&quot;Job output&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://i.ibb.co/8Kr77CL/job-output.png&quot; alt=&quot;Job output&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Thank you for reading this post, this was just a very simple example of &lt;strong&gt;CI&lt;/strong&gt; but I still hope you have learned something about &lt;strong&gt;continuous integration&lt;/strong&gt;, why to use it and most importantly how to implement it.&lt;/p&gt;
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Continuous Integration with Github Actions"
+title: "Continuous Integration with GitHub Actions"
 date: 2021-09-08 01:07:53 +0200
 categories: cloud continuous_integration github_actions
 ---
@@ -23,13 +23,13 @@ Something I'm not going to be covering in this post is **CD** or **continuous de
 
 # An actual example
 
-I have a [project](https://github.com/AdamBrodin/spacepark-spacepark-group3) where I want to run a certain action everytime I commit to it. How would I do this?
+I have a [project](https://GitHub.com/AdamBrodin/spacepark-spacepark-group3) where I want to run a certain action everytime I commit to it. How would I do this?
 To execute your action you need a **workflow** file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you'll find it rather easy.
-You can execute your **CI** operations & actions anywhere and anyhow you'd like but in this example im going to be using **Github Actions**.
+You can execute your **CI** operations & actions anywhere and anyhow you'd like but in this example im going to be using **GitHub Actions**.
 
-# Github Actions
+# GitHub Actions
 
-With GitHub Actions it's really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our **workflow file** is. This directory should be called **.github/workflows/YOUR_WORKFLOW_NAME**.
+With GitHub Actions it's really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our **workflow file** is. This directory should be called **.GitHub/workflows/YOUR_WORKFLOW_NAME**.
 Once you've created that directory, create your **workflow file** in that directory and name it anything you'd like.
 
 To explain how to structure your **workflow file** im going to show you the finished file first.
@@ -79,10 +79,10 @@ steps:
 ```
 
 And that's it! If you followed along this far on your own you have successfully integrated a very simple version of **continuous integration** in your own project.
-After you've commit something you can head over to the **"actions"** tab on your repository and you should see something like this:\
-![Workflow Run](/assets/images/workflow_run.png)
+After you've commit something you can head over to the **"actions"** tab on your repository and you should see something like this:
+![Workflow Run](https://i.ibb.co/z8LQLN6/workflow-run.png)
 And if you click on your **workflow run** you can see the status (or finished result) of your job, which looks something like this:
-![Job output](/assets/images/job_output.png)
+![Job output](https://i.ibb.co/8Kr77CL/job-output.png)
 
 Thank you for reading this post, this was just a very simple example of **CI** but I still hope you have learned something about **continuous integration**, why to use it and most importantly how to implement it.
 
