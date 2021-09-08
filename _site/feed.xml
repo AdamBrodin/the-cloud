@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-07T15:26:45+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud basics</title><link href="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html" rel="alternate" type="text/html" title="Cloud basics" /><published>2021-09-06T14:14:04+02:00</published><updated>2021-09-06T14:14:04+02:00</updated><id>http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html">&lt;h1 id=&quot;the-cloud&quot;&gt;The cloud.&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-08T02:26:27+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Integration with Github Actions</title><link href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" rel="alternate" type="text/html" title="Continuous Integration with Github Actions" /><published>2021-09-08T01:07:53+02:00</published><updated>2021-09-08T01:07:53+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html">&lt;h1 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h1&gt;
+
+&lt;p&gt;You might’ve heard terms like &lt;strong&gt;CI/CD&lt;/strong&gt; or &lt;strong&gt;continuous integration/continuous deployment&lt;/strong&gt; before, and wondered, what is it? To put things simply, &lt;strong&gt;CI&lt;/strong&gt; is a means of automating tasks in your project, CI could for instance be triggered everytime you commit to a branch.&lt;/p&gt;
+
+&lt;h1 id=&quot;why-you-need-it&quot;&gt;Why you need it&lt;/h1&gt;
+
+&lt;p&gt;Why so many developers tend to use &lt;strong&gt;continuous integration&lt;/strong&gt; in their projects regardless of size is no mystery. CI can and will save you both time, money and countless headaches. Jokes aside, think of CI like your servant that does the essential and boring parts of your project for you.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-it-can-do&quot;&gt;What it can do&lt;/h1&gt;
+
+&lt;p&gt;In a real world, practical example, &lt;strong&gt;CI&lt;/strong&gt; usually does a variety of things. Most commonly a simple &lt;strong&gt;CI&lt;/strong&gt; pipeline goes a little something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Build your project -&amp;gt; run tests -&amp;gt; report back results&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Something I’m not going to be covering in this post is &lt;strong&gt;CD&lt;/strong&gt; or &lt;strong&gt;continuous deployment&lt;/strong&gt; which is essentially what happens after the results. If your build fails, you’ll get alerted with what the issue is so you can resolve the situation quickly. Although this is a common workflow when using &lt;strong&gt;CI&lt;/strong&gt;, the limits of what you can do with it lies in the clouds.&lt;/p&gt;
+
+&lt;h1 id=&quot;an-actual-example&quot;&gt;An actual example&lt;/h1&gt;
+
+&lt;p&gt;I have a &lt;a href=&quot;https://github.com/AdamBrodin/spacepark-spacepark-group3&quot;&gt;project&lt;/a&gt; where I want to run a certain action everytime I commit to it. How would I do this?
+To execute your action you need a &lt;strong&gt;workflow&lt;/strong&gt; file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you’ll find it rather easy.
+You can execute your &lt;strong&gt;CI&lt;/strong&gt; operations &amp;amp; actions anywhere and anyhow you’d like but in this example im going to be using &lt;strong&gt;Github Actions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;github-actions&quot;&gt;Github Actions&lt;/h1&gt;
+
+&lt;p&gt;With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our &lt;strong&gt;workflow file&lt;/strong&gt; is. This directory should be called &lt;strong&gt;.github/workflows/YOUR_WORKFLOW_NAME&lt;/strong&gt;.
+Once you’ve created that directory, create your &lt;strong&gt;workflow file&lt;/strong&gt; in that directory and name it anything you’d like.&lt;/p&gt;
+
+&lt;p&gt;To explain how to structure your &lt;strong&gt;workflow file&lt;/strong&gt; im going to show you the finished file first.&lt;/p&gt;
+
+&lt;h1 id=&quot;my_workflowyml&quot;&gt;my_workflow.yml&lt;/h1&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;on_commit&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;push&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;print_job&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;print_hello_world&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;Hello World!&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s go through each variable one by one.&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# the naming of your workflow&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello-world&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# the trigger for the workflow and its jobs (actions) to be executed&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# in this case it&apos;s set to &quot;push&quot; which means on every push/commit to the repository&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;push&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# this defines which jobs the workflow contains and their names&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;print_job&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# what type of machine the job is run on (or commonly, in simpler terms, what computer/system, for example linux or windows)&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# this defines the steps the workflow contains&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;print_hello_world&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the name of the step&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;Hello World!&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the action/task the step performs&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And that’s it! If you followed along this far on your own you have successfully integrated a very simple version of &lt;strong&gt;continuous integration&lt;/strong&gt; in your own project.
+After you’ve commit something you can head over to the &lt;strong&gt;“actions”&lt;/strong&gt; tab on your repository and you should see something like this:&lt;br /&gt;
+&lt;img src=&quot;/assets/images/workflow_run.png&quot; alt=&quot;Workflow Run&quot; /&gt;
+And if you click on your &lt;strong&gt;workflow run&lt;/strong&gt; you can see the status (or finished result) of your job, which looks something like this:
+&lt;img src=&quot;/assets/images/job_output.png&quot; alt=&quot;Job output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading this post, this was just a very simple example of &lt;strong&gt;CI&lt;/strong&gt; but I still hope you have learned something about &lt;strong&gt;continuous integration&lt;/strong&gt;, why to use it and most importantly how to implement it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Written by Adam Brodin&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="cloud" /><category term="continuous_integration" /><category term="github_actions" /><summary type="html">Continuous Integration</summary></entry><entry><title type="html">Cloud basics</title><link href="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html" rel="alternate" type="text/html" title="Cloud basics" /><published>2021-09-06T14:14:04+02:00</published><updated>2021-09-06T14:14:04+02:00</updated><id>http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html">&lt;h1 id=&quot;the-cloud&quot;&gt;The cloud.&lt;/h1&gt;
 
 &lt;p&gt;What is it? How does it work?&lt;/p&gt;
 

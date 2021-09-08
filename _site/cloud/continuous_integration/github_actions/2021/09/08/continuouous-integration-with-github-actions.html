@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Continuous Integration with Github Actions | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Continuous Integration with Github Actions" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Continuous Integration" />
+<meta property="og:description" content="Continuous Integration" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-08T01:07:53+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Continuous Integration with Github Actions" />
+<script type="application/ld+json">
+{"headline":"Continuous Integration with Github Actions","dateModified":"2021-09-08T01:07:53+02:00","datePublished":"2021-09-08T01:07:53+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html"},"description":"Continuous Integration","url":"http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Continuous Integration with Github Actions</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-08T01:07:53+02:00" itemprop="datePublished">
+        Sep 8, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="continuous-integration">Continuous Integration</h1>
+
+<p>You might’ve heard terms like <strong>CI/CD</strong> or <strong>continuous integration/continuous deployment</strong> before, and wondered, what is it? To put things simply, <strong>CI</strong> is a means of automating tasks in your project, CI could for instance be triggered everytime you commit to a branch.</p>
+
+<h1 id="why-you-need-it">Why you need it</h1>
+
+<p>Why so many developers tend to use <strong>continuous integration</strong> in their projects regardless of size is no mystery. CI can and will save you both time, money and countless headaches. Jokes aside, think of CI like your servant that does the essential and boring parts of your project for you.</p>
+
+<h1 id="what-it-can-do">What it can do</h1>
+
+<p>In a real world, practical example, <strong>CI</strong> usually does a variety of things. Most commonly a simple <strong>CI</strong> pipeline goes a little something like this:</p>
+
+<p><strong>Build your project -&gt; run tests -&gt; report back results</strong></p>
+
+<p>Something I’m not going to be covering in this post is <strong>CD</strong> or <strong>continuous deployment</strong> which is essentially what happens after the results. If your build fails, you’ll get alerted with what the issue is so you can resolve the situation quickly. Although this is a common workflow when using <strong>CI</strong>, the limits of what you can do with it lies in the clouds.</p>
+
+<h1 id="an-actual-example">An actual example</h1>
+
+<p>I have a <a href="https://github.com/AdamBrodin/spacepark-spacepark-group3">project</a> where I want to run a certain action everytime I commit to it. How would I do this?
+To execute your action you need a <strong>workflow</strong> file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you’ll find it rather easy.
+You can execute your <strong>CI</strong> operations &amp; actions anywhere and anyhow you’d like but in this example im going to be using <strong>Github Actions</strong>.</p>
+
+<h1 id="github-actions">Github Actions</h1>
+
+<p>With GitHub Actions it’s really not difficult to automate trivial tasks. First of all we have to create a special directory in our repository to let GitHub know where our <strong>workflow file</strong> is. This directory should be called <strong>.github/workflows/YOUR_WORKFLOW_NAME</strong>.
+Once you’ve created that directory, create your <strong>workflow file</strong> in that directory and name it anything you’d like.</p>
+
+<p>To explain how to structure your <strong>workflow file</strong> im going to show you the finished file first.</p>
+
+<h1 id="my_workflowyml">my_workflow.yml</h1>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">on_commit</span>
+<span class="na">on</span><span class="pi">:</span> <span class="s">push</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">print_job</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">print_hello_world</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">echo "Hello World!"</span>
+</code></pre></div></div>
+
+<p>Let’s go through each variable one by one.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># the naming of your workflow</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">hello-world</span>
+</code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># the trigger for the workflow and its jobs (actions) to be executed</span>
+<span class="c1"># in this case it's set to "push" which means on every push/commit to the repository</span>
+<span class="na">on</span><span class="pi">:</span> <span class="s">push</span>
+</code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># this defines which jobs the workflow contains and their names</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">print_job</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># what type of machine the job is run on (or commonly, in simpler terms, what computer/system, for example linux or windows)</span>
+<span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+</code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># this defines the steps the workflow contains</span>
+<span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">print_hello_world</span> <span class="c1"># the name of the step</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">echo "Hello World!"</span> <span class="c1"># the action/task the step performs</span>
+</code></pre></div></div>
+
+<p>And that’s it! If you followed along this far on your own you have successfully integrated a very simple version of <strong>continuous integration</strong> in your own project.
+After you’ve commit something you can head over to the <strong>“actions”</strong> tab on your repository and you should see something like this:<br />
+<img src="/assets/images/workflow_run.png" alt="Workflow Run" />
+And if you click on your <strong>workflow run</strong> you can see the status (or finished result) of your job, which looks something like this:
+<img src="/assets/images/job_output.png" alt="Job output" /></p>
+
+<p>Thank you for reading this post, this was just a very simple example of <strong>CI</strong> but I still hope you have learned something about <strong>continuous integration</strong>, why to use it and most importantly how to implement it.</p>
+
+<p><strong>Written by Adam Brodin</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#continuous-integration">continuous_integration</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#github-actions">github_actions</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/servers/computing/2021/09/06/cloud-basics.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Cloud basics
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>
