@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Continuous Deployment with Docker | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Continuous Deployment with Docker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-13T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Continuous Deployment with Docker" />
+<script type="application/ld+json">
+{"headline":"Continuous Deployment with Docker","dateModified":"2021-09-13T00:00:00+02:00","datePublished":"2021-09-13T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html"},"description":"Introduction","url":"http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Continuous Deployment with Docker</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-13T00:00:00+02:00" itemprop="datePublished">
+        Sep 13, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="introduction">Introduction</h1>
+
+<p>In my previous <a href="https://adambrodin.github.io/the-cloud/cloud/continuous_integration/github_actions/2021/09/07/continuous-integration-with-github-actions.html">blog post</a> I went through the basics of <strong>continuous integration</strong> and created a simple pipeline. In this post I’m going to be building upon that and for that I will be demonstrating continuous <strong>deployment</strong> or <strong>CD</strong>.</p>
+
+<h1 id="what-it-is">What it is</h1>
+
+<p><strong>Continuous Deployment</strong> is the natural next step in a <strong>CI</strong> pipeline. With <strong>CD</strong> you <strong>automatically</strong> deploy your built and tested project.
+In my previous post I described a typical <strong>CI</strong> pipeline which looked like this:<br />
+<strong>Build your project -&gt; run tests -&gt; report back results</strong></p>
+
+<p>But now with <strong>CD</strong> in our project we go all the way, from the codebase, all the way to the customer:<br />
+<strong>Build your project -&gt; run tests -&gt; report back results -&gt; publish project to repository -&gt; publish project to production</strong></p>
+
+<h1 id="benefits">Benefits</h1>
+
+<p>So why would you want to use <strong>continuous deployment</strong> in your own project? Even though it can seem very tricky and daunting at first, the time you spend on setting it up, you’ll save by automnating these tasks in the end.
+Besides the large amount of time saved on repetitive yet trivial tasks, <strong>CD</strong> also comes with a bunch of other benefits. Mainly <strong>CD</strong> makes sure the finished product looks the same everytime you build. The built project uses standardized systems and versions of frameworks, all to minimize problems that could occur if you would manually deploy your application.</p>
+
+<h1 id="a-simple-implementation">A simple implementation</h1>
+
+<p>Let’s look at a simple implementation of <strong>CD</strong>. For this I am going to be using a very simple project <a href="https://github.com/AdamBrodin/the-barista-api-team-1">Barista Project</a> that brews coffee via the command-line. To be able to accurately test and develop this you’ll probably need a version of <a href="https://www.docker.com/">Docker</a> installed on your computer.</p>
+
+<p>As I mentioned earlier, <strong>CD</strong> can be difficult to implement, but it is only as diffcult as you make it.
+Let’s start with the root of the pipeline, the <strong>workflow file</strong>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Continuous Integration &amp; Deployment</span>
+<span class="na">on</span><span class="pi">:</span>
+<span class="na">push</span><span class="pi">:</span>
+<span class="na">branches</span><span class="pi">:</span> <span class="s">- main</span>
+<span class="na">paths</span><span class="pi">:</span> <span class="s">- "**Dockerfile**"</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+<span class="na">build</span><span class="pi">:</span>
+<span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+<span class="na">steps</span><span class="pi">:</span> <span class="s">- name</span><span class="pi">:</span> <span class="s">Fetch codebase</span>
+<span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="s">- name</span><span class="pi">:</span> <span class="s">Setup Dotnet</span>
+        <span class="s">uses</span><span class="pi">:</span> <span class="s">actions/setup-dotnet@v1</span>
+        <span class="s">with</span><span class="pi">:</span>
+          <span class="na">dotnet-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">5.0"</span>
+
+<span class="err">      </span><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Restore Dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet restore BaristaApi</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build Api</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet build -c Release --no-restore BaristaApi</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Unit Tests</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet test -c Release BaristaTests</span>
+
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-artifact@main</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">webpack artifacts</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">BaristaApi/</span>
+
+<span class="na">docker-build-and-push</span><span class="pi">:</span>
+<span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Docker Build &amp; Push</span>
+<span class="na">needs</span><span class="pi">:</span> <span class="s">build</span>
+<span class="na">steps</span><span class="pi">:</span> <span class="s">- name</span><span class="pi">:</span> <span class="s">Fetch codebase</span>
+<span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v1</span>
+      <span class="s">- name</span><span class="pi">:</span> <span class="s">Download built artifact</span>
+        <span class="s">uses</span><span class="pi">:</span> <span class="s">actions/download-artifact@main</span>
+        <span class="s">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">webpack artifacts</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">BaristaApi</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build container image</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">docker/build-push-action@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">username</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">password</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">registry</span><span class="pi">:</span> <span class="s">docker.pkg.github.com</span>
+          <span class="na">repository</span><span class="pi">:</span> <span class="s">adambrodin/the-barista-api-team-1/barista-api</span>
+          <span class="na">tag_with_sha</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>As you can see from the last post I’ve added some things.
+The build jobs main purpose is now to do the following:<br />
+<strong>Restore/fetch the dependencies -&gt; build the api project -&gt; run the unit tests -&gt; upload artifact (if successful)</strong></p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Setup Dotnet</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-dotnet@v1</span>
+  <span class="na">with</span><span class="pi">:</span>
+    <span class="na">dotnet-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">5.0"</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Restore Dependencies</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet restore BaristaApi</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build Api</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet build -c Release --no-restore BaristaApi</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Unit Tests</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">dotnet test -c Release BaristaTests</span>
+
+<span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-artifact@main</span>
+  <span class="na">with</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">webpack artifacts</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s">BaristaApi/</span>
+</code></pre></div></div>
+
+<p>Building upon that we have the docker part:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">docker-build-and-push</span><span class="pi">:</span>
+<span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Docker Build &amp; Push</span>
+<span class="na">needs</span><span class="pi">:</span> <span class="s">build</span>
+<span class="na">steps</span><span class="pi">:</span> <span class="s">- name</span><span class="pi">:</span> <span class="s">Fetch codebase</span>
+<span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v1</span>
+      <span class="s">- name</span><span class="pi">:</span> <span class="s">Download built artifact</span>
+        <span class="s">uses</span><span class="pi">:</span> <span class="s">actions/download-artifact@main</span>
+        <span class="s">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">webpack artifacts</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">BaristaApi</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build container image</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">docker/build-push-action@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">username</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">password</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">registry</span><span class="pi">:</span> <span class="s">docker.pkg.github.com</span>
+          <span class="na">repository</span><span class="pi">:</span> <span class="s">adambrodin/the-barista-api-team-1/barista-api</span>
+          <span class="na">tag_with_sha</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>This part/job is responsible for actually fetching the built project from the previous step, creating a docker container image from that and finally publishing that to <strong>GitHub Packages</strong>. However, how does the workflow know how to build the Docker image? Well, that <strong>magic</strong> happens in the <strong>Dockerfile</strong>:</p>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> mcr.microsoft.com/dotnet/runtime:5.0 AS base</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="k">FROM</span><span class="s"> mcr.microsoft.com/dotnet/sdk:5.0 AS build</span>
+<span class="k">WORKDIR</span><span class="s"> /src</span>
+<span class="k">COPY</span><span class="s"> ["BaristaApi/BaristaApi.csproj", "."]</span>
+<span class="k">RUN </span>dotnet restore <span class="s2">"./BaristaApi.csproj"</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">WORKDIR</span><span class="s"> "/src/."</span>
+<span class="k">RUN </span>dotnet build <span class="s2">"BaristaApi/BaristaApi.csproj"</span> <span class="nt">-c</span> Release <span class="nt">-o</span> /app/build
+
+<span class="k">FROM</span><span class="s"> build AS publish</span>
+<span class="k">RUN </span>dotnet publish <span class="s2">"BaristaApi/BaristaApi.csproj"</span> <span class="nt">-c</span> Release <span class="nt">-o</span> /app/publish
+
+<span class="k">FROM</span><span class="s"> base AS final</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --from=publish /app/publish .</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["dotnet", "BaristaApi.dll"]</span>
+</code></pre></div></div>
+
+<p>So what actually happens in the dockerfile? A simple way to put it is this:<br />
+<strong>Fetch .NET 5.0 images -&gt; Move required files to their appropriate positions -&gt; Restore -&gt; Build -&gt; and finally Publish the created image to the selected destination (GitHub Packages)</strong></p>
+
+<p>That is the easiest way to explain things, there is no standardized way to create a Dockerfile, each framework and project will require its own research on how to put it together. This is the way for a simple .NET 5.0 project, but it will differ if you for example work on a React or Java project instead.</p>
+
+<h1 id="the-complete-pipeline">The complete pipeline</h1>
+
+<p>The completed pipeline in detail looks a little something like this:\</p>
+
+<p><strong>Commit code to branch -&gt; Trigger workflow run -&gt; Setup project dependencies -&gt; Build project -&gt; Run unit tests -&gt; Upload artifact of built project -&gt; Fetch artifact in deploy job -&gt; Build docker-image from Dockerfile -&gt; Publish docker-image to GitHub Packages</strong></p>
+
+<p>And that’s it.</p>
+
+<p>The finalized output can be found as seen:
+<img src="https://i.ibb.co/PD5dPV2/pF0UOyh.png" alt="Packages" />\</p>
+
+<p>And you can retrieve and run it locally with this URL:
+<img src="https://i.ibb.co/PWnQHQs/98ONjU8.png" alt="Image URL" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p><strong>Continuous deployment</strong> is the next natural step to get a complete <strong>CI/CD</strong> pipeline and truly automize your project. With a slight starting curve it can be difficult at first but will greatly reward you in the future. Thank you for reading!</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=R5ppadIsGbA">https://www.youtube.com/watch?v=R5ppadIsGbA</a></li>
+  <li><a href="https://docs.docker.com/compose/gettingstarted/">https://docs.docker.com/compose/gettingstarted/</a></li>
+</ul>
+
+<p><strong>Written by Adam Brodin</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#continuous-deployment">continuous_deployment</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#docker">docker</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuous-integration-with-github-actions.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Continuous Integration with GitHub Actions
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>

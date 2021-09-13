@@ -1,4 +1,181 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-08T02:35:03+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Integration with GitHub Actions</title><link href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html" rel="alternate" type="text/html" title="Continuous Integration with GitHub Actions" /><published>2021-09-08T01:07:53+02:00</published><updated>2021-09-08T01:07:53+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuouous-integration-with-github-actions.html">&lt;h1 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-13T18:56:46+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Deployment with Docker</title><link href="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html" rel="alternate" type="text/html" title="Continuous Deployment with Docker" /><published>2021-09-13T00:00:00+02:00</published><updated>2021-09-13T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In my previous &lt;a href=&quot;https://adambrodin.github.io/the-cloud/cloud/continuous_integration/github_actions/2021/09/07/continuous-integration-with-github-actions.html&quot;&gt;blog post&lt;/a&gt; I went through the basics of &lt;strong&gt;continuous integration&lt;/strong&gt; and created a simple pipeline. In this post I’m going to be building upon that and for that I will be demonstrating continuous &lt;strong&gt;deployment&lt;/strong&gt; or &lt;strong&gt;CD&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-it-is&quot;&gt;What it is&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Continuous Deployment&lt;/strong&gt; is the natural next step in a &lt;strong&gt;CI&lt;/strong&gt; pipeline. With &lt;strong&gt;CD&lt;/strong&gt; you &lt;strong&gt;automatically&lt;/strong&gt; deploy your built and tested project.
+In my previous post I described a typical &lt;strong&gt;CI&lt;/strong&gt; pipeline which looked like this:&lt;br /&gt;
+&lt;strong&gt;Build your project -&amp;gt; run tests -&amp;gt; report back results&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;But now with &lt;strong&gt;CD&lt;/strong&gt; in our project we go all the way, from the codebase, all the way to the customer:&lt;br /&gt;
+&lt;strong&gt;Build your project -&amp;gt; run tests -&amp;gt; report back results -&amp;gt; publish project to repository -&amp;gt; publish project to production&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;benefits&quot;&gt;Benefits&lt;/h1&gt;
+
+&lt;p&gt;So why would you want to use &lt;strong&gt;continuous deployment&lt;/strong&gt; in your own project? Even though it can seem very tricky and daunting at first, the time you spend on setting it up, you’ll save by automnating these tasks in the end.
+Besides the large amount of time saved on repetitive yet trivial tasks, &lt;strong&gt;CD&lt;/strong&gt; also comes with a bunch of other benefits. Mainly &lt;strong&gt;CD&lt;/strong&gt; makes sure the finished product looks the same everytime you build. The built project uses standardized systems and versions of frameworks, all to minimize problems that could occur if you would manually deploy your application.&lt;/p&gt;
+
+&lt;h1 id=&quot;a-simple-implementation&quot;&gt;A simple implementation&lt;/h1&gt;
+
+&lt;p&gt;Let’s look at a simple implementation of &lt;strong&gt;CD&lt;/strong&gt;. For this I am going to be using a very simple project &lt;a href=&quot;https://github.com/AdamBrodin/the-barista-api-team-1&quot;&gt;Barista Project&lt;/a&gt; that brews coffee via the command-line. To be able to accurately test and develop this you’ll probably need a version of &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; installed on your computer.&lt;/p&gt;
+
+&lt;p&gt;As I mentioned earlier, &lt;strong&gt;CD&lt;/strong&gt; can be difficult to implement, but it is only as diffcult as you make it.
+Let’s start with the root of the pipeline, the &lt;strong&gt;workflow file&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Continuous Integration &amp;amp; Deployment&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;- main&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;- &quot;**Dockerfile**&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Fetch codebase&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Setup Dotnet&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/setup-dotnet@v1&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;dotnet-version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;5.0&quot;&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Restore Dependencies&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet restore BaristaApi&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build Api&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet build -c Release --no-restore BaristaApi&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Run Unit Tests&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet test -c Release BaristaTests&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/upload-artifact@main&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webpack artifacts&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;BaristaApi/&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;docker-build-and-push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Docker Build &amp;amp; Push&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Fetch codebase&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v1&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Download built artifact&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/download-artifact@main&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webpack artifacts&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;BaristaApi&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build container image&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker/build-push-action@v1&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;registry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker.pkg.github.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;adambrodin/the-barista-api-team-1/barista-api&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;tag_with_sha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see from the last post I’ve added some things.
+The build jobs main purpose is now to do the following:&lt;br /&gt;
+&lt;strong&gt;Restore/fetch the dependencies -&amp;gt; build the api project -&amp;gt; run the unit tests -&amp;gt; upload artifact (if successful)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Setup Dotnet&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/setup-dotnet@v1&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;dotnet-version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;5.0&quot;&lt;/span&gt;
+
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Restore Dependencies&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet restore BaristaApi&lt;/span&gt;
+
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build Api&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet build -c Release --no-restore BaristaApi&lt;/span&gt;
+
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Run Unit Tests&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dotnet test -c Release BaristaTests&lt;/span&gt;
+
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/upload-artifact@main&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webpack artifacts&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;BaristaApi/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Building upon that we have the docker part:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;docker-build-and-push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Docker Build &amp;amp; Push&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;needs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;build&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Fetch codebase&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v1&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;- name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Download built artifact&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/download-artifact@main&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webpack artifacts&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;BaristaApi&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build container image&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker/build-push-action@v1&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;registry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker.pkg.github.com&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;adambrodin/the-barista-api-team-1/barista-api&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;tag_with_sha&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This part/job is responsible for actually fetching the built project from the previous step, creating a docker container image from that and finally publishing that to &lt;strong&gt;GitHub Packages&lt;/strong&gt;. However, how does the workflow know how to build the Docker image? Well, that &lt;strong&gt;magic&lt;/strong&gt; happens in the &lt;strong&gt;Dockerfile&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-Dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; mcr.microsoft.com/dotnet/runtime:5.0 AS base&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /app&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; mcr.microsoft.com/dotnet/sdk:5.0 AS build&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /src&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; [&quot;BaristaApi/BaristaApi.csproj&quot;, &quot;.&quot;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;dotnet restore &lt;span class=&quot;s2&quot;&gt;&quot;./BaristaApi.csproj&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; . .&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &quot;/src/.&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;dotnet build &lt;span class=&quot;s2&quot;&gt;&quot;BaristaApi/BaristaApi.csproj&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; Release &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /app/build
+
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; build AS publish&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;dotnet publish &lt;span class=&quot;s2&quot;&gt;&quot;BaristaApi/BaristaApi.csproj&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; Release &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /app/publish
+
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; base AS final&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /app&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;COPY&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; --from=publish /app/publish .&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ENTRYPOINT&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; [&quot;dotnet&quot;, &quot;BaristaApi.dll&quot;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So what actually happens in the dockerfile? A simple way to put it is this:&lt;br /&gt;
+&lt;strong&gt;Fetch .NET 5.0 images -&amp;gt; Move required files to their appropriate positions -&amp;gt; Restore -&amp;gt; Build -&amp;gt; and finally Publish the created image to the selected destination (GitHub Packages)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That is the easiest way to explain things, there is no standardized way to create a Dockerfile, each framework and project will require its own research on how to put it together. This is the way for a simple .NET 5.0 project, but it will differ if you for example work on a React or Java project instead.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-complete-pipeline&quot;&gt;The complete pipeline&lt;/h1&gt;
+
+&lt;p&gt;The completed pipeline in detail looks a little something like this:\&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Commit code to branch -&amp;gt; Trigger workflow run -&amp;gt; Setup project dependencies -&amp;gt; Build project -&amp;gt; Run unit tests -&amp;gt; Upload artifact of built project -&amp;gt; Fetch artifact in deploy job -&amp;gt; Build docker-image from Dockerfile -&amp;gt; Publish docker-image to GitHub Packages&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;And that’s it.&lt;/p&gt;
+
+&lt;p&gt;The finalized output can be found as seen:
+&lt;img src=&quot;https://i.ibb.co/PD5dPV2/pF0UOyh.png&quot; alt=&quot;Packages&quot; /&gt;\&lt;/p&gt;
+
+&lt;p&gt;And you can retrieve and run it locally with this URL:
+&lt;img src=&quot;https://i.ibb.co/PWnQHQs/98ONjU8.png&quot; alt=&quot;Image URL&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Continuous deployment&lt;/strong&gt; is the next natural step to get a complete &lt;strong&gt;CI/CD&lt;/strong&gt; pipeline and truly automize your project. With a slight starting curve it can be difficult at first but will greatly reward you in the future. Thank you for reading!&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=R5ppadIsGbA&quot;&gt;https://www.youtube.com/watch?v=R5ppadIsGbA&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/compose/gettingstarted/&quot;&gt;https://docs.docker.com/compose/gettingstarted/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Written by Adam Brodin&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="cloud" /><category term="continuous_deployment" /><category term="docker" /><summary type="html">Introduction</summary></entry><entry><title type="html">Continuous Integration with GitHub Actions</title><link href="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuous-integration-with-github-actions.html" rel="alternate" type="text/html" title="Continuous Integration with GitHub Actions" /><published>2021-09-08T01:07:53+02:00</published><updated>2021-09-08T01:07:53+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuous-integration-with-github-actions</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_integration/github_actions/2021/09/08/continuous-integration-with-github-actions.html">&lt;h1 id=&quot;continuous-integration&quot;&gt;Continuous Integration&lt;/h1&gt;
 
 &lt;p&gt;You might’ve heard terms like &lt;strong&gt;CI/CD&lt;/strong&gt; or &lt;strong&gt;continuous integration/continuous deployment&lt;/strong&gt; before, and wondered, what is it? To put things simply, &lt;strong&gt;CI&lt;/strong&gt; is a means of automating tasks in your project, CI could for instance be triggered everytime you commit to a branch.&lt;/p&gt;
 
@@ -16,7 +193,7 @@
 
 &lt;h1 id=&quot;an-actual-example&quot;&gt;An actual example&lt;/h1&gt;
 
-&lt;p&gt;I have a &lt;a href=&quot;https://GitHub.com/AdamBrodin/spacepark-spacepark-group3&quot;&gt;project&lt;/a&gt; where I want to run a certain action everytime I commit to it. How would I do this?
+&lt;p&gt;I have a &lt;a href=&quot;https://github.com/AdamBrodin/spacepark-spacepark-group3&quot;&gt;project&lt;/a&gt; where I want to run a certain action everytime I commit to it. How would I do this?
 To execute your action you need a &lt;strong&gt;workflow&lt;/strong&gt; file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you’ll find it rather easy.
 You can execute your &lt;strong&gt;CI&lt;/strong&gt; operations &amp;amp; actions anywhere and anyhow you’d like but in this example im going to be using &lt;strong&gt;GitHub Actions&lt;/strong&gt;.&lt;/p&gt;
 

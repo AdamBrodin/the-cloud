@@ -23,7 +23,7 @@ Something I'm not going to be covering in this post is **CD** or **continuous de
 
 # An actual example
 
-I have a [project](https://GitHub.com/AdamBrodin/spacepark-spacepark-group3) where I want to run a certain action everytime I commit to it. How would I do this?
+I have a [project](https://github.com/AdamBrodin/spacepark-spacepark-group3) where I want to run a certain action everytime I commit to it. How would I do this?
 To execute your action you need a **workflow** file. A workflow file looks tricky at first but once you spend a little time with it (and its indentations!!!) you'll find it rather easy.
 You can execute your **CI** operations & actions anywhere and anyhow you'd like but in this example im going to be using **GitHub Actions**.
 
