@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Azure basics | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Azure basics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-15T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Azure basics" />
+<script type="application/ld+json">
+{"headline":"Azure basics","dateModified":"2021-09-15T00:00:00+02:00","datePublished":"2021-09-15T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html"},"description":"Introduction","url":"http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Azure basics</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-15T00:00:00+02:00" itemprop="datePublished">
+        Sep 15, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="introduction">Introduction</h1>
+
+<p>In today’s post I’m going to be going through the basics of serverless computing (FaaS) through <a href="https://portal.azure.com/">Microsoft Azure</a>.</p>
+
+<h1 id="what-is-faas">What is FaaS</h1>
+
+<p><strong>FaaS</strong> or function-as-a-service is a cloud service which enables developers to execute code without any physical hardware. This is something most cloud-services provide and is one of the simpler levels of cloud computing. Common use cases include sending an email every x days to, for example remind users to read your newspaper.</p>
+
+<h1 id="a-simple-example">A simple example</h1>
+
+<p>FaaS is as mentioned one of the simpler means of cloud computing and therefore <strong>can</strong> be very simple to setup aswell. I’m going to be demonstrating how to build a simple addition calculator <strong>Azure Functions</strong>.
+After you’ve setup your account the steps are simple, first and foremost, create a <strong>function app</strong>:
+<img src="https://i.ibb.co/L9VJxdX/lapekg7.png" alt="Create Function App" /></p>
+
+<p>When that’s done you have to add <strong>function</strong>, for this example I’m going to be using a <strong>HTTP Trigger</strong>:
+<img src="https://i.ibb.co/MV5skPs/reRsaSR.png" alt="HTTP Trigger" /></p>
+
+<p>What this means is the function and it’s code is going to be executed everytime a <strong>HTTP Request</strong> is received to a certain url/endpoint.</p>
+
+<p>Now all we have to do is add our code:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="n">r</span> <span class="s">"Newtonsoft.Json"</span>
+
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="nf">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="nf">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="nf">ReadToEndAsync</span><span class="p">();</span>
+    <span class="kt">dynamic</span> <span class="n">data</span> <span class="p">=</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="nf">DeserializeObject</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sum</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="nf">ToDouble</span><span class="p">(</span><span class="n">data</span><span class="p">?.</span><span class="n">firstNumber</span><span class="p">)</span> <span class="p">+</span> <span class="n">Convert</span><span class="p">.</span><span class="nf">ToDouble</span><span class="p">(</span><span class="n">data</span><span class="p">?.</span><span class="n">secondNumber</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">OkObjectResult</span><span class="p">(</span><span class="s">$"The sum of </span><span class="p">{</span><span class="n">data</span><span class="p">?.</span><span class="n">firstNumber</span><span class="p">}</span><span class="s"> + </span><span class="p">{</span><span class="n">data</span><span class="p">?.</span><span class="n">secondNumber</span><span class="p">}</span><span class="s"> is: </span><span class="p">{</span><span class="n">sum</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>What this simple code does is it takes <strong>input</strong> from the <strong>HTTP Request</strong>, in this case two numbers, which it then processes into an <strong>output</strong>. For the point of this exercise it simply performs some simple addition to produce an end sum of the two numbers, which it the returns to the origin of the <strong>HTTP Request</strong> as a <strong>HTTP Response</strong>.</p>
+
+<h1 id="testing">Testing</h1>
+
+<p>Testing this for yourself is very simple. You have to ways two main do it, first of all right through on the same page as the code is written. You can do this in the following steps:
+<img src="https://i.ibb.co/fM3BjnY/Pkl7Ksh.png&quot;" alt="Testing Button" />
+<img src="https://i.ibb.co/qM0dh2G/UnY1DZe.png" alt="Input" /></p>
+
+<p>Which yields the corresponding output:
+<img src="https://i.ibb.co/Xk9ZKh4/79NYhuk.png" alt="Output" /></p>
+
+<p>Another way to test this from your actual computer, is via <strong>cURL</strong> commands.
+You can do this by fetching the <strong>function URL</strong> like so:
+<img src="https://i.ibb.co/Fm9z6SF/8W5rE4o.png" alt="Function URL" /></p>
+
+<p>and then passing in your <strong>request parameters</strong> along an API authentication key which you can find here:
+<img src="https://i.ibb.co/vPbWntw/L4z8uL5.png" alt="App Keys" /></p>
+
+<h1 id="security">Security</h1>
+
+<p>Something you <strong>ALWAYS</strong> have to consider when dealing with the cloud or really anything with computers these days is <strong>security</strong>. You can never be 100% secure against hackers but these are the top three things to maintain a secure enough environment for your data and functions:</p>
+
+<ul>
+  <li>
+    <p>Use authentication
+You should always require authentication via API keys when for exampel calling cloud functions. Not only does this reduce load and unwanted traffic but also reduces data breaches and other security risks.</p>
+  </li>
+  <li>
+    <p>Write secure code
+This one sounds very obvious but as mentioned you can never be 100% secure, however you still need to do your research on the various types of common breaches. What i’m specifically talking about here is injections. SQL injections, NoSQL injections and function runtime code injections are all very common ways to infiltrate your data and also execute unwanted and possibly malicious code.</p>
+  </li>
+  <li>
+    <p>Logging &amp; monitoring
+Lastly, logging &amp; monitoring. You should always monitor and log your cloud components. This makes it way easier to take action when the attack is there, and you can notice and hopefully resolve security issues before it’s too late.</p>
+  </li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This concludes this simple introduction to <strong>FaaS</strong> and cloud computing via simple functions like this one. Obviously this example was very simple but it still teaches you how <strong>FaaS</strong> can work in a small scale and how everything is linked together at the end, the complete <strong>pipeline</strong>.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://www.ibm.com/cloud/learn/faas">https://www.ibm.com/cloud/learn/faas</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/learn/modules/choose-azure-service-to-integrate-and-automate-business-processes/">https://docs.microsoft.com/en-us/learn/modules/choose-azure-service-to-integrate-and-automate-business-processes/</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/learn/modules/create-serverless-logic-with-azure-functions/">https://docs.microsoft.com/en-us/learn/modules/create-serverless-logic-with-azure-functions/</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/">https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/</a></li>
+  <li><a href="https://we45.com/blog/top-10-security-risks-in-serverless/">https://we45.com/blog/top-10-security-risks-in-serverless/</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#azure">azure</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#azure-functions">azure-functions</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Continuous Deployment with Docker
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>

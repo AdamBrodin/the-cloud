@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-13T18:56:46+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Continuous Deployment with Docker</title><link href="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html" rel="alternate" type="text/html" title="Continuous Deployment with Docker" /><published>2021-09-13T00:00:00+02:00</published><updated>2021-09-13T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-16T01:55:17+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure basics</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html" rel="alternate" type="text/html" title="Azure basics" /><published>2021-09-15T00:00:00+02:00</published><updated>2021-09-15T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-functions/2021/09/15/azure-basics.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In today’s post I’m going to be going through the basics of serverless computing (FaaS) through &lt;a href=&quot;https://portal.azure.com/&quot;&gt;Microsoft Azure&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-faas&quot;&gt;What is FaaS&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;FaaS&lt;/strong&gt; or function-as-a-service is a cloud service which enables developers to execute code without any physical hardware. This is something most cloud-services provide and is one of the simpler levels of cloud computing. Common use cases include sending an email every x days to, for example remind users to read your newspaper.&lt;/p&gt;
+
+&lt;h1 id=&quot;a-simple-example&quot;&gt;A simple example&lt;/h1&gt;
+
+&lt;p&gt;FaaS is as mentioned one of the simpler means of cloud computing and therefore &lt;strong&gt;can&lt;/strong&gt; be very simple to setup aswell. I’m going to be demonstrating how to build a simple addition calculator &lt;strong&gt;Azure Functions&lt;/strong&gt;.
+After you’ve setup your account the steps are simple, first and foremost, create a &lt;strong&gt;function app&lt;/strong&gt;:
+&lt;img src=&quot;https://i.ibb.co/L9VJxdX/lapekg7.png&quot; alt=&quot;Create Function App&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When that’s done you have to add &lt;strong&gt;function&lt;/strong&gt;, for this example I’m going to be using a &lt;strong&gt;HTTP Trigger&lt;/strong&gt;:
+&lt;img src=&quot;https://i.ibb.co/MV5skPs/reRsaSR.png&quot; alt=&quot;HTTP Trigger&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What this means is the function and it’s code is going to be executed everytime a &lt;strong&gt;HTTP Request&lt;/strong&gt; is received to a certain url/endpoint.&lt;/p&gt;
+
+&lt;p&gt;Now all we have to do is add our code:&lt;/p&gt;
+
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Newtonsoft.Json&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.AspNetCore.Mvc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.Extensions.Primitives&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Newtonsoft.Json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IActionResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ILogger&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestBody&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StreamReader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ReadToEndAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;dynamic&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JsonConvert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;DeserializeObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requestBody&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToDouble&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToDouble&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secondNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OkObjectResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;The sum of &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; + &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secondNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; is: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What this simple code does is it takes &lt;strong&gt;input&lt;/strong&gt; from the &lt;strong&gt;HTTP Request&lt;/strong&gt;, in this case two numbers, which it then processes into an &lt;strong&gt;output&lt;/strong&gt;. For the point of this exercise it simply performs some simple addition to produce an end sum of the two numbers, which it the returns to the origin of the &lt;strong&gt;HTTP Request&lt;/strong&gt; as a &lt;strong&gt;HTTP Response&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;testing&quot;&gt;Testing&lt;/h1&gt;
+
+&lt;p&gt;Testing this for yourself is very simple. You have to ways two main do it, first of all right through on the same page as the code is written. You can do this in the following steps:
+&lt;img src=&quot;https://i.ibb.co/fM3BjnY/Pkl7Ksh.png&amp;quot;&quot; alt=&quot;Testing Button&quot; /&gt;
+&lt;img src=&quot;https://i.ibb.co/qM0dh2G/UnY1DZe.png&quot; alt=&quot;Input&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Which yields the corresponding output:
+&lt;img src=&quot;https://i.ibb.co/Xk9ZKh4/79NYhuk.png&quot; alt=&quot;Output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Another way to test this from your actual computer, is via &lt;strong&gt;cURL&lt;/strong&gt; commands.
+You can do this by fetching the &lt;strong&gt;function URL&lt;/strong&gt; like so:
+&lt;img src=&quot;https://i.ibb.co/Fm9z6SF/8W5rE4o.png&quot; alt=&quot;Function URL&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;and then passing in your &lt;strong&gt;request parameters&lt;/strong&gt; along an API authentication key which you can find here:
+&lt;img src=&quot;https://i.ibb.co/vPbWntw/L4z8uL5.png&quot; alt=&quot;App Keys&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;security&quot;&gt;Security&lt;/h1&gt;
+
+&lt;p&gt;Something you &lt;strong&gt;ALWAYS&lt;/strong&gt; have to consider when dealing with the cloud or really anything with computers these days is &lt;strong&gt;security&lt;/strong&gt;. You can never be 100% secure against hackers but these are the top three things to maintain a secure enough environment for your data and functions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use authentication
+You should always require authentication via API keys when for exampel calling cloud functions. Not only does this reduce load and unwanted traffic but also reduces data breaches and other security risks.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Write secure code
+This one sounds very obvious but as mentioned you can never be 100% secure, however you still need to do your research on the various types of common breaches. What i’m specifically talking about here is injections. SQL injections, NoSQL injections and function runtime code injections are all very common ways to infiltrate your data and also execute unwanted and possibly malicious code.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Logging &amp;amp; monitoring
+Lastly, logging &amp;amp; monitoring. You should always monitor and log your cloud components. This makes it way easier to take action when the attack is there, and you can notice and hopefully resolve security issues before it’s too late.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;This concludes this simple introduction to &lt;strong&gt;FaaS&lt;/strong&gt; and cloud computing via simple functions like this one. Obviously this example was very simple but it still teaches you how &lt;strong&gt;FaaS&lt;/strong&gt; can work in a small scale and how everything is linked together at the end, the complete &lt;strong&gt;pipeline&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.ibm.com/cloud/learn/faas&quot;&gt;https://www.ibm.com/cloud/learn/faas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/modules/choose-azure-service-to-integrate-and-automate-business-processes/&quot;&gt;https://docs.microsoft.com/en-us/learn/modules/choose-azure-service-to-integrate-and-automate-business-processes/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/modules/create-serverless-logic-with-azure-functions/&quot;&gt;https://docs.microsoft.com/en-us/learn/modules/create-serverless-logic-with-azure-functions/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/&quot;&gt;https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://we45.com/blog/top-10-security-risks-in-serverless/&quot;&gt;https://we45.com/blog/top-10-security-risks-in-serverless/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-functions" /><summary type="html">Introduction</summary></entry><entry><title type="html">Continuous Deployment with Docker</title><link href="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html" rel="alternate" type="text/html" title="Continuous Deployment with Docker" /><published>2021-09-13T00:00:00+02:00</published><updated>2021-09-13T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/continuous_deployment/docker/2021/09/13/continuous-deployment-with-docker.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In my previous &lt;a href=&quot;https://adambrodin.github.io/the-cloud/cloud/continuous_integration/github_actions/2021/09/07/continuous-integration-with-github-actions.html&quot;&gt;blog post&lt;/a&gt; I went through the basics of &lt;strong&gt;continuous integration&lt;/strong&gt; and created a simple pipeline. In this post I’m going to be building upon that and for that I will be demonstrating continuous &lt;strong&gt;deployment&lt;/strong&gt; or &lt;strong&gt;CD&lt;/strong&gt;.&lt;/p&gt;
 
