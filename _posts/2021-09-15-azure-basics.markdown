@@ -15,7 +15,7 @@ In today's post I'm going to be going through the basics of serverless computing
 
 # A simple example
 
-FaaS is as mentioned one of the simpler means of cloud computing and therefore **can** be very simple to setup aswell. I'm going to be demonstrating how to build a simple addition calculator **Azure Functions**.
+FaaS is as mentioned one of the simpler means of cloud computing and therefore **can** be very simple to setup aswell. I'm going to be demonstrating how to build a simple addition calculator via **Azure Functions**.
 After you've setup your account the steps are simple, first and foremost, create a **function app**:
 ![Create Function App](https://i.ibb.co/L9VJxdX/lapekg7.png)
 
