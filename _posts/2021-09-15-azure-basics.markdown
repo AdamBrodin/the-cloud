@@ -15,7 +15,7 @@ In today's post I'm going to be going through the basics of serverless computing
 
 # A simple example
 
-FaaS is as mentioned one of the simpler means of cloud computing and therefore **can** be very simple to setup aswell. I'm going to be demonstrating how to build a simple addition calculator **Azure Functions**.
+FaaS is as mentioned one of the simpler means of cloud computing and therefore **can** be very simple to setup aswell. I'm going to be demonstrating how to build a simple addition calculator via **Azure Functions**.
 After you've setup your account the steps are simple, first and foremost, create a **function app**:
 ![Create Function App](https://i.ibb.co/L9VJxdX/lapekg7.png)
 
@@ -66,13 +66,13 @@ and then passing in your **request parameters** along an API authentication key 
 
 Something you **ALWAYS** have to consider when dealing with the cloud or really anything with computers these days is **security**. You can never be 100% secure against hackers but these are the top three things to maintain a secure enough environment for your data and functions:
 
-- Use authentication
+- # Use authentication
   You should always require authentication via API keys when for exampel calling cloud functions. Not only does this reduce load and unwanted traffic but also reduces data breaches and other security risks.
 
-- Write secure code
+- # Write secure code
   This one sounds very obvious but as mentioned you can never be 100% secure, however you still need to do your research on the various types of common breaches. What i'm specifically talking about here is injections. SQL injections, NoSQL injections and function runtime code injections are all very common ways to infiltrate your data and also execute unwanted and possibly malicious code.
 
-- Logging & monitoring
+- # Logging & monitoring
   Lastly, logging & monitoring. You should always monitor and log your cloud components. This makes it way easier to take action when the attack is there, and you can notice and hopefully resolve security issues before it's too late.
 
 # Conclusion
