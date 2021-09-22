@@ -30,7 +30,7 @@ Select Core (SQL), and follow the steps as prompted.
 
 # The function (API)
 
-As mentioned earlier, it is expected that you already have a C#/.NET function in which you can modify, whether that be locally or remotely, is up to you.
+As mentioned earlier, it is expected that you already have a C#/.NET function that you can modify, whether that be locally or remotely, is up to you.
 I'm going to modify my HttpTrigger class to make it look as follows:
 
 ```csharp
