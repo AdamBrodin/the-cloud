@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-22T20:31:19+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html"></content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-static-web-apps" /><category term="react" /><summary type="html"></summary></entry><entry><title type="html">Databases in the cloud</title><link href="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html" rel="alternate" type="text/html" title="Databases in the cloud" /><published>2021-09-20T00:00:00+02:00</published><updated>2021-09-20T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-22T20:38:36+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html"></content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-static-web-apps" /><category term="react" /><summary type="html"></summary></entry><entry><title type="html">Databases in the cloud</title><link href="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html" rel="alternate" type="text/html" title="Databases in the cloud" /><published>2021-09-20T00:00:00+02:00</published><updated>2021-09-20T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In todays post I’ll be going through how you can setup and utilize a database in the cloud via &lt;a href=&quot;https://azure.microsoft.com/sv-se/services/cosmos-db/#overview&quot;&gt;Azure Cosmos&lt;/a&gt;.&lt;/p&gt;
 
@@ -15,11 +15,11 @@
 &lt;/ul&gt;
 
 &lt;p&gt;Start by opening the &lt;strong&gt;command-palette&lt;/strong&gt; and &lt;strong&gt;signing in&lt;/strong&gt;:
-&lt;img src=&quot;https://i.imgur.com/FgHk9DS.png&quot; alt=&quot;Azure Sign In&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://i.ibb.co/GRRc1cG/FgHk9DS.png&quot; alt=&quot;Azure Sign In&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After you’ve followed the steps and are now signed in with your Azure account with a &lt;strong&gt;valid subscription&lt;/strong&gt;, you’re good to go!
 Next up, creating the actual database, sample principle, open the &lt;strong&gt;command-palette and follow the steps&lt;/strong&gt;:
-&lt;img src=&quot;https://i.imgur.com/Ez29xUI.png&quot; alt=&quot;Azure Create Database&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://i.ibb.co/52QZTXS/Ez29xUI.png&quot; alt=&quot;Azure Create Database&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select Core (SQL), and follow the steps as prompted.&lt;/p&gt;
 
@@ -140,14 +140,13 @@ Doing this is quite simple and the code looks as follows:&lt;/li&gt;
     &lt;p&gt;Setup database connection string
 The client needs to know what database to talk to, and that is done by setting an &lt;strong&gt;environment variable&lt;/strong&gt;.
 To retrieve your connection string you can very easily, within VSCode get it from here:
-&lt;img src=&quot;https://i.imgur.com/tvJ3fui.png&quot; alt=&quot;Retrieve Database Connection String&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://i.ibb.co/b21kz8H/tvJ3fui.png&quot; alt=&quot;Retrieve Database Connection String&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;After you’ve copied the connection string you have to put it in a specific file for environment variables, &lt;strong&gt;local.settings.json&lt;/strong&gt; which can be found in the root of your &lt;strong&gt;Azure Functions&lt;/strong&gt; folder.&lt;/p&gt;
 
     &lt;p&gt;Paste in the string, to a key of your choice, which should look like this:&lt;/p&gt;
 
-    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;local.settings.json&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;CosmosDbConnectionString&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AccountEndpoint=MY_URL;AccountKey=MY_KEY&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nl&quot;&gt;&quot;CosmosDbConnectionString&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AccountEndpoint=MY_URL;AccountKey=MY_KEY&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -178,14 +177,19 @@ In order to actually read and write something to the database, you need (in gene
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And that’s it, your database should be fully &lt;strong&gt;functional&lt;/strong&gt; and &lt;strong&gt;accessible&lt;/strong&gt; both locally and remotely. Incase you missed something, or want the full source-code you can find it here: &lt;a href=&quot;https://github.com/AdamBrodin/cosmos-todo-app&quot;&gt;Github Repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And that’s it, your database should be fully &lt;strong&gt;functional&lt;/strong&gt; and &lt;strong&gt;accessible&lt;/strong&gt; both locally and remotely. Incase you missed something, or want the full source-code you can find it here: &lt;a href=&quot;https://github.com/AdamBrodin/cosmos-todo-app&quot;&gt;GitHub Repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;database-details--pipeline&quot;&gt;Database details &amp;amp; pipeline&lt;/h1&gt;
 
 &lt;p&gt;The database it self is a &lt;strong&gt;CosmosDB NoSQL&lt;/strong&gt; database which stores information or &lt;strong&gt;data&lt;/strong&gt; in a very accessible and readable &lt;strong&gt;JSON-format&lt;/strong&gt;. In this example it consists of one “table” which are the todos themselves.&lt;/p&gt;
 
 &lt;p&gt;The complete pipeline when accessing the API now looks like this:&lt;br /&gt;
-&lt;strong&gt;Client makes API call&lt;/strong&gt; -&amp;gt; &lt;strong&gt;HTTP Trigger receives request&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Azure Function is executed&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Function connects to database using environment variables (db connection string)&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Function sends back response&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Function is done and no longer active/alive&lt;/strong&gt;&lt;/p&gt;
+&lt;strong&gt;Client makes API call&lt;/strong&gt; -&amp;gt;&lt;br /&gt;
+&lt;strong&gt;HTTP Trigger receives request&lt;/strong&gt; -&amp;gt;&lt;br /&gt;
+&lt;strong&gt;Azure Function is executed&lt;/strong&gt; -&amp;gt;&lt;br /&gt;
+&lt;strong&gt;Function connects to database using environment variables (db connection string)&lt;/strong&gt; -&amp;gt;&lt;br /&gt;
+&lt;strong&gt;Function sends back response&lt;/strong&gt; -&amp;gt;&lt;br /&gt;
+&lt;strong&gt;Function is done and no longer active/alive&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;database-migration&quot;&gt;Database migration&lt;/h1&gt;
 
@@ -202,7 +206,7 @@ The cost for a project such as this with a small user base (400 RU/S db) becomes
 
 &lt;p&gt;In today’s post I’ve gone through setting up a simple &lt;strong&gt;Restful API&lt;/strong&gt; using &lt;strong&gt;Azure Functions&lt;/strong&gt; utilizing a &lt;strong&gt;CosmosDB&lt;/strong&gt; database. This is a cost-effective, fully-managed and in my opinion very handy way to access and use a database in a project in the cloud.&lt;/p&gt;
 
-&lt;p&gt;In my next blog post I’m going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the &lt;strong&gt;database API&lt;/strong&gt; I’ve created today.&lt;/p&gt;
+&lt;p&gt;In my next &lt;a href=&quot;http://127.0.0.1:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html&quot;&gt;blog post&lt;/a&gt; I’m going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the &lt;strong&gt;database API&lt;/strong&gt; I’ve created today.&lt;/p&gt;
 
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 

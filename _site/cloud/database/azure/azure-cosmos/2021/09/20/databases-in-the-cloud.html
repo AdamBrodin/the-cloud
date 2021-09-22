@@ -128,11 +128,11 @@
 </ul>
 
 <p>Start by opening the <strong>command-palette</strong> and <strong>signing in</strong>:
-<img src="https://i.imgur.com/FgHk9DS.png" alt="Azure Sign In" /></p>
+<img src="https://i.ibb.co/GRRc1cG/FgHk9DS.png" alt="Azure Sign In" /></p>
 
 <p>After you’ve followed the steps and are now signed in with your Azure account with a <strong>valid subscription</strong>, you’re good to go!
 Next up, creating the actual database, sample principle, open the <strong>command-palette and follow the steps</strong>:
-<img src="https://i.imgur.com/Ez29xUI.png" alt="Azure Create Database" /></p>
+<img src="https://i.ibb.co/52QZTXS/Ez29xUI.png" alt="Azure Create Database" /></p>
 
 <p>Select Core (SQL), and follow the steps as prompted.</p>
 
@@ -253,14 +253,13 @@ Doing this is quite simple and the code looks as follows:</li>
     <p>Setup database connection string
 The client needs to know what database to talk to, and that is done by setting an <strong>environment variable</strong>.
 To retrieve your connection string you can very easily, within VSCode get it from here:
-<img src="https://i.imgur.com/tvJ3fui.png" alt="Retrieve Database Connection String" /></p>
+<img src="https://i.ibb.co/b21kz8H/tvJ3fui.png" alt="Retrieve Database Connection String" /></p>
 
     <p>After you’ve copied the connection string you have to put it in a specific file for environment variables, <strong>local.settings.json</strong> which can be found in the root of your <strong>Azure Functions</strong> folder.</p>
 
     <p>Paste in the string, to a key of your choice, which should look like this:</p>
 
-    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">local.settings.json</span><span class="w">
-</span><span class="nl">"CosmosDbConnectionString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AccountEndpoint=MY_URL;AccountKey=MY_KEY"</span><span class="w">
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"CosmosDbConnectionString"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AccountEndpoint=MY_URL;AccountKey=MY_KEY"</span><span class="w">
 </span></code></pre></div>    </div>
   </li>
   <li>
@@ -291,14 +290,19 @@ In order to actually read and write something to the database, you need (in gene
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>And that’s it, your database should be fully <strong>functional</strong> and <strong>accessible</strong> both locally and remotely. Incase you missed something, or want the full source-code you can find it here: <a href="https://github.com/AdamBrodin/cosmos-todo-app">Github Repository</a>.</p>
+<p>And that’s it, your database should be fully <strong>functional</strong> and <strong>accessible</strong> both locally and remotely. Incase you missed something, or want the full source-code you can find it here: <a href="https://github.com/AdamBrodin/cosmos-todo-app">GitHub Repository</a>.</p>
 
 <h1 id="database-details--pipeline">Database details &amp; pipeline</h1>
 
 <p>The database it self is a <strong>CosmosDB NoSQL</strong> database which stores information or <strong>data</strong> in a very accessible and readable <strong>JSON-format</strong>. In this example it consists of one “table” which are the todos themselves.</p>
 
 <p>The complete pipeline when accessing the API now looks like this:<br />
-<strong>Client makes API call</strong> -&gt; <strong>HTTP Trigger receives request</strong> -&gt; <strong>Azure Function is executed</strong> -&gt; <strong>Function connects to database using environment variables (db connection string)</strong> -&gt; <strong>Function sends back response</strong> -&gt; <strong>Function is done and no longer active/alive</strong></p>
+<strong>Client makes API call</strong> -&gt;<br />
+<strong>HTTP Trigger receives request</strong> -&gt;<br />
+<strong>Azure Function is executed</strong> -&gt;<br />
+<strong>Function connects to database using environment variables (db connection string)</strong> -&gt;<br />
+<strong>Function sends back response</strong> -&gt;<br />
+<strong>Function is done and no longer active/alive</strong></p>
 
 <h1 id="database-migration">Database migration</h1>
 
@@ -315,7 +319,7 @@ The cost for a project such as this with a small user base (400 RU/S db) becomes
 
 <p>In today’s post I’ve gone through setting up a simple <strong>Restful API</strong> using <strong>Azure Functions</strong> utilizing a <strong>CosmosDB</strong> database. This is a cost-effective, fully-managed and in my opinion very handy way to access and use a database in a project in the cloud.</p>
 
-<p>In my next blog post I’m going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the <strong>database API</strong> I’ve created today.</p>
+<p>In my next <a href="http://127.0.0.1:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html">blog post</a> I’m going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the <strong>database API</strong> I’ve created today.</p>
 
 <h1 id="references">References</h1>
 

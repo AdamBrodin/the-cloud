@@ -20,11 +20,11 @@ First and foremost you have to create the database. To keeps things as simple as
 - [Azure Databases](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb)
 
 Start by opening the **command-palette** and **signing in**:
-![Azure Sign In](https://i.imgur.com/FgHk9DS.png)
+![Azure Sign In](https://i.ibb.co/GRRc1cG/FgHk9DS.png)
 
 After you've followed the steps and are now signed in with your Azure account with a **valid subscription**, you're good to go!
 Next up, creating the actual database, sample principle, open the **command-palette and follow the steps**:
-![Azure Create Database](https://i.imgur.com/Ez29xUI.png)
+![Azure Create Database](https://i.ibb.co/52QZTXS/Ez29xUI.png)
 
 Select Core (SQL), and follow the steps as prompted.
 
@@ -143,14 +143,13 @@ namespace TodoApi
 2. Setup database connection string
    The client needs to know what database to talk to, and that is done by setting an **environment variable**.
    To retrieve your connection string you can very easily, within VSCode get it from here:
-   ![Retrieve Database Connection String](https://i.imgur.com/tvJ3fui.png)
+   ![Retrieve Database Connection String](https://i.ibb.co/b21kz8H/tvJ3fui.png)
 
    After you've copied the connection string you have to put it in a specific file for environment variables, **local.settings.json** which can be found in the root of your **Azure Functions** folder.
 
    Paste in the string, to a key of your choice, which should look like this:
 
    ```json
-   // local.settings.json
    "CosmosDbConnectionString": "AccountEndpoint=MY_URL;AccountKey=MY_KEY"
    ```
 
@@ -180,14 +179,19 @@ namespace TodoApi.Models
 }
 ```
 
-And that's it, your database should be fully **functional** and **accessible** both locally and remotely. Incase you missed something, or want the full source-code you can find it here: [Github Repository](https://github.com/AdamBrodin/cosmos-todo-app).
+And that's it, your database should be fully **functional** and **accessible** both locally and remotely. Incase you missed something, or want the full source-code you can find it here: [GitHub Repository](https://github.com/AdamBrodin/cosmos-todo-app).
 
 # Database details & pipeline
 
 The database it self is a **CosmosDB NoSQL** database which stores information or **data** in a very accessible and readable **JSON-format**. In this example it consists of one "table" which are the todos themselves.
 
 The complete pipeline when accessing the API now looks like this:\
-**Client makes API call** -> **HTTP Trigger receives request** -> **Azure Function is executed** -> **Function connects to database using environment variables (db connection string)** -> **Function sends back response** -> **Function is done and no longer active/alive**
+**Client makes API call** ->\
+**HTTP Trigger receives request** ->\
+**Azure Function is executed** ->\
+**Function connects to database using environment variables (db connection string)** ->\
+**Function sends back response** ->\
+**Function is done and no longer active/alive**
 
 # Database migration
 
@@ -204,7 +208,7 @@ And if you have a bigger project (100,000,000 executions/month & 100,000 RU/S) y
 
 In today's post I've gone through setting up a simple **Restful API** using **Azure Functions** utilizing a **CosmosDB** database. This is a cost-effective, fully-managed and in my opinion very handy way to access and use a database in a project in the cloud.
 
-In my next blog post I'm going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the **database API** I've created today.
+In my next [blog post](http://127.0.0.1:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html) I'm going to be building upon this project to simulate a real-life scenario by creating a React webpage that talks to the **database API** I've created today.
 
 # References
 
