@@ -30,7 +30,7 @@ Select Core (SQL), and follow the steps as prompted.
 
 # The function (API)
 
-As mentioned earlier, it is expected that you already have a C#/.NET function in which you can modify, whether that be locally or remotely, is up to you.
+As mentioned earlier, it is expected that you already have a C#/.NET function that you can modify, whether that be locally or remotely, is up to you.
 I'm going to modify my HttpTrigger class to make it look as follows:
 
 ```csharp
@@ -100,7 +100,7 @@ What this does is it creates **Restless API** endpoints for users to access, in 
 
 As you may have noticed I'm using a **CosmosClient** object in order to communicate with my database. To able to do this I first need to do two important things:
 
-1. Dependency injection
+1. # Dependency injection
    In order for the cosmosclient to work I need to inject it upon launch first.
    Doing this is quite simple and the code looks as follows:
 
@@ -140,7 +140,7 @@ namespace TodoApi
 }
 ```
 
-2. Setup database connection string
+2. # Setup database connection string
    The client needs to know what database to talk to, and that is done by setting an **environment variable**.
    To retrieve your connection string you can very easily, within VSCode get it from here:
    ![Retrieve Database Connection String](https://i.ibb.co/b21kz8H/tvJ3fui.png)
@@ -153,7 +153,7 @@ namespace TodoApi
    "CosmosDbConnectionString": "AccountEndpoint=MY_URL;AccountKey=MY_KEY"
    ```
 
-3. The model
+3. # The model
    In order to actually read and write something to the database, you need (in general) a model. Mine looks very simple and represents one Todo-Task:
 
 ```csharp
