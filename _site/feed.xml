@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-22T20:38:36+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html"></content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-static-web-apps" /><category term="react" /><summary type="html"></summary></entry><entry><title type="html">Databases in the cloud</title><link href="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html" rel="alternate" type="text/html" title="Databases in the cloud" /><published>2021-09-20T00:00:00+02:00</published><updated>2021-09-20T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-24T22:04:25+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In today’s blogpost I’m going to, as mentioned in the previous post be going through how to actually implement and deploy a CosmosDB database to a webpage. I’m going to be doing this by using &lt;a href=&quot;https://azure.microsoft.com/en-us/services/app-service/static/&quot;&gt;Azure Static Web Apps&lt;/a&gt; to bundle together both the API and Frontend together.&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-started&quot;&gt;Getting started&lt;/h1&gt;
+
+&lt;p&gt;It’s really not that difficult a basic version of this, start by creating your &lt;strong&gt;Static Web App&lt;/strong&gt;:
+&lt;img src=&quot;https://i.ibb.co/2gK98GL/t34Aj38.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Be sure to select your deployment type of choice, I’m going to be using GitHub &amp;amp; GitHub Actions. Sign in to GitHub and authorize access to your account.
+Once that’s done, select the repository your project exists in.&lt;/p&gt;
+
+&lt;p&gt;Next, select your frontend framework of choice under build presets, I’m going to be using React.&lt;br /&gt;
+The next step is very important, under app location, put the name of the folder which contains your frontend, in my case, it’s named “frontend”.
+Do the same thing for “api location”, enter the name of the folder which contains your api or &lt;strong&gt;Azure Function&lt;/strong&gt;.\&lt;/p&gt;
+
+&lt;p&gt;This should look something like this:
+&lt;img src=&quot;https://i.ibb.co/tmYLSW0/jWmIjtS.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When that’s done you can hit create and Azure will automatically create a workflow file in your repository to deploy your fullstack application to the cloud also known as &lt;strong&gt;CI/CD&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;issues&quot;&gt;Issues&lt;/h1&gt;
+
+&lt;p&gt;Some issues can occur whilst trying to test and use an &lt;strong&gt;Azure Static Web App&lt;/strong&gt; this way. Firstly, &lt;strong&gt;MAKE SURE UR DB CONNECTION STRING IS SET!!!&lt;/strong&gt;. As you may recall from my last post, I put my &lt;strong&gt;database connection string&lt;/strong&gt; in a seperate file called &lt;strong&gt;local.settings.json&lt;/strong&gt;. This is something you manually have to do inside your &lt;strong&gt;Static Web App’s Configuration&lt;/strong&gt;. You can find this here:
+&lt;img src=&quot;https://i.ibb.co/jM88NXW/WDbh3Cx.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This was something I myself spent a long time trying to figure out why my database wasn’t working.&lt;/p&gt;
+
+&lt;p&gt;Next up, &lt;strong&gt;CORS&lt;/strong&gt;. In production you automatically gain access to your API, no modifications needed. However, when developing &amp;amp; testing locally you need to modify your connection to the &lt;strong&gt;API&lt;/strong&gt; a bit.&lt;/p&gt;
+
+&lt;p&gt;If you’re using React like me you can easily provide a “reverse-proxy connection” by adding this to &lt;strong&gt;package.json&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;proxy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:7071/&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And for your backend, put this in your &lt;strong&gt;local.settings.json&lt;/strong&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;Host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;CORS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:3000&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;pricing&quot;&gt;Pricing&lt;/h1&gt;
+
+&lt;p&gt;You might think a useful service like this comes with a fat price, but you’d be wrong. Other than the cost of maintaining the actual database &amp;amp;&amp;amp; azure function, it’s incredibly cheap regardless of project size. If you have a personal or really small projet, it’s even free! The pricing plan looks as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.ibb.co/MZ8fTdp/ejCdwxl.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;In this short post I’ve demonstrated how easy it is to deploy your &lt;strong&gt;complete application&lt;/strong&gt; using &lt;strong&gt;Azure Static Web Apps&lt;/strong&gt;. Something you may have noticed is I didn’t actually provide any code for the frontend bits and that is to keep things a bit simpler. If you want to see the complete fullstack source-code you can find it here: &lt;a href=&quot;https://github.com/AdamBrodin/cosmos-todo-app&quot;&gt;GitHub Repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/modules/publish-static-web-app-api-preview-url/&quot;&gt;https://docs.microsoft.com/en-us/learn/modules/publish-static-web-app-api-preview-url/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-static-web-apps" /><category term="react" /><summary type="html">Introduction</summary></entry><entry><title type="html">Databases in the cloud</title><link href="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html" rel="alternate" type="text/html" title="Databases in the cloud" /><published>2021-09-20T00:00:00+02:00</published><updated>2021-09-20T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/database/azure/azure-cosmos/2021/09/20/databases-in-the-cloud.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In todays post I’ll be going through how you can setup and utilize a database in the cloud via &lt;a href=&quot;https://azure.microsoft.com/sv-se/services/cosmos-db/#overview&quot;&gt;Azure Cosmos&lt;/a&gt;.&lt;/p&gt;
 
