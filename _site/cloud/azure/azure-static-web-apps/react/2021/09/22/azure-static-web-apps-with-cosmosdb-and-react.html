@@ -117,27 +117,26 @@
 
 <h1 id="getting-started">Getting started</h1>
 
-<p>It’s really not that difficult a basic version of this, start by creating your <strong>Static Web App</strong>:
+<p>It’s really not that difficult accomplish this, start by creating your <strong>Static Web App</strong>:
 <img src="https://i.ibb.co/2gK98GL/t34Aj38.png" alt="Azure Static Web Apps Pricing" /></p>
 
 <p>Be sure to select your deployment type of choice, I’m going to be using GitHub &amp; GitHub Actions. Sign in to GitHub and authorize access to your account.
 Once that’s done, select the repository your project exists in.</p>
 
-<p>Next, select your frontend framework of choice under build presets, I’m going to be using React.<br />
+<p>Next, select your frontend framework of choice under build presets, I’m going to be using React.
 The next step is very important, under app location, put the name of the folder which contains your frontend, in my case, it’s named “frontend”.
-Do the same thing for “api location”, enter the name of the folder which contains your api or <strong>Azure Function</strong>.\</p>
+Do the same thing for “api location”, enter the name of the folder which contains your api or <strong>Azure Function</strong>.</p>
 
 <p>This should look something like this:
 <img src="https://i.ibb.co/tmYLSW0/jWmIjtS.png" alt="Azure Static Web Apps Pricing" /></p>
 
-<p>When that’s done you can hit create and Azure will automatically create a workflow file in your repository to deploy your fullstack application to the cloud also known as <strong>CI/CD</strong>.</p>
-
+<p>When that’s done you can hit create and Azure will automatically create a <strong>CI/CD</strong> workflow file in your repository to deploy your fullstack application to the cloud.</p>
 <h1 id="issues">Issues</h1>
 
 <p>Some issues can occur whilst trying to test and use an <strong>Azure Static Web App</strong> this way. Firstly, <strong>MAKE SURE UR DB CONNECTION STRING IS SET!!!</strong>. As you may recall from my last post, I put my <strong>database connection string</strong> in a seperate file called <strong>local.settings.json</strong>. This is something you manually have to do inside your <strong>Static Web App’s Configuration</strong>. You can find this here:
 <img src="https://i.ibb.co/jM88NXW/WDbh3Cx.png" alt="Azure Static Web Apps Pricing" /></p>
 
-<p>This was something I myself spent a long time trying to figure out why my database wasn’t working.</p>
+<p>This was something I myself spent a long time trying to figure out as to why my database wasn’t working.</p>
 
 <p>Next up, <strong>CORS</strong>. In production you automatically gain access to your API, no modifications needed. However, when developing &amp; testing locally you need to modify your connection to the <strong>API</strong> a bit.</p>
 
@@ -155,7 +154,7 @@ Do the same thing for “api location”, enter the name of the folder which con
 
 <h1 id="pricing">Pricing</h1>
 
-<p>You might think a useful service like this comes with a fat price, but you’d be wrong. Other than the cost of maintaining the actual database &amp;&amp; azure function, it’s incredibly cheap regardless of project size. If you have a personal or really small projet, it’s even free! The pricing plan looks as follows:</p>
+<p>You might think a useful service like this comes with a fat price, but you’d be wrong. Other than the cost of maintaining the actual database &amp; azure function, it’s incredibly cheap regardless of project size. If you have a personal or really small project, it’s even free! The pricing plan looks as follows:</p>
 
 <p><img src="https://i.ibb.co/MZ8fTdp/ejCdwxl.png" alt="Azure Static Web Apps Pricing" /></p>
 
@@ -215,6 +214,14 @@ Do the same thing for “api location”, enter the name of the folder which con
         </a>
       
 
+      
+        <a class="post-next" href="/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">
+          <h4 class="post-pagination-label">Next</h4>
+          <span class="post-pagination-title">
+            Why you should use service buses
+ <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
       
     </nav>
   </footer>

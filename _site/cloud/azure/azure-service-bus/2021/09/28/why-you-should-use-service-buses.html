@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Why you should use service buses | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Why you should use service buses" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is a service bus" />
+<meta property="og:description" content="What is a service bus" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-28T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why you should use service buses" />
+<script type="application/ld+json">
+{"headline":"Why you should use service buses","dateModified":"2021-09-28T00:00:00+02:00","datePublished":"2021-09-28T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html"},"description":"What is a service bus","url":"http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Why you should use service buses</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-28T00:00:00+02:00" itemprop="datePublished">
+        Sep 28, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="what-is-a-service-bus">What is a service bus</h1>
+
+<p>A service bus is something that is used to decouple your application and its services from one another. In essence a service bus acts as a <strong>message broker</strong>, to send and receive messages across your whole application pipeline.</p>
+
+<p>Common use cases include store/booking applications where it is essential that the clients requests (orders/purchases) gets processed from point A to point B securely, quickly and most importantly, without any risk of dataloss.</p>
+
+<h1 id="the-benefits">The benefits</h1>
+
+<p>Service buses can bring a lot to the table that will benefit your applications.</p>
+
+<h1 id="1-data-integrity">1. Data integrity</h1>
+
+<p>As messages such as your order request as stored in the message and service bus, it’ll remain intact all the way from the frontend until the order is completed. This can be as mentioned, crucial depending on your application and is especially important when dealing with financial applications or sensitive/urgent data.</p>
+
+<h1 id="2-load-balancing">2. Load balancing</h1>
+
+<p>Rather than talking directly to an API from the frontend, your service bus handles the work. Depending on the scale of your project this can heavily minimize your load and risks for requests not going through due to overloaded servers. Instead you can configure your service bus to queue messages and talk to your API for example in a timely manner, one at a time, in the order that they were received.</p>
+
+<h1 id="3-decoupling">3. Decoupling</h1>
+
+<p>Because messages and services are <strong>decoupled</strong> or seperated from each other, the client does not need to wait for a response as opposed to direct contact with an API where everything freezes until the API response has been received. This leads to a better user-experience for the client (customer) and creates a “flow” through the whole process.</p>
+
+<h1 id="drawbacks">Drawbacks</h1>
+
+<p>The main drawback of using a service bus comes down to single-point-of-failure. What I mean by this is in short terms; if the service bus fails, everything fails. Since everything will most likely be linked to towards your service bus, if something were to happen to it and it would seize to function as expected, all connected services would also raise issues. This is something that can be minimized or even avoided altogether though by utilizing solid monitoring and exception handling techniques.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Service buses can be a great way to maintain a great user experience in your application by ensuring secure data delivery whilst also minimizing peak load towards your backend.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#azure">azure</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#azure-service-bus">azure-service-bus</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Azure Static Web Apps with CosmosDB &amp; React
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>

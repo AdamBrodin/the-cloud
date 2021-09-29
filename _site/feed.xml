@@ -1,30 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-24T22:04:25+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-29T18:45:08+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Why you should use service buses</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" rel="alternate" type="text/html" title="Why you should use service buses" /><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">&lt;h1 id=&quot;what-is-a-service-bus&quot;&gt;What is a service bus&lt;/h1&gt;
+
+&lt;p&gt;A service bus is something that is used to decouple your application and its services from one another. In essence a service bus acts as a &lt;strong&gt;message broker&lt;/strong&gt;, to send and receive messages across your whole application pipeline.&lt;/p&gt;
+
+&lt;p&gt;Common use cases include store/booking applications where it is essential that the clients requests (orders/purchases) gets processed from point A to point B securely, quickly and most importantly, without any risk of dataloss.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-benefits&quot;&gt;The benefits&lt;/h1&gt;
+
+&lt;p&gt;Service buses can bring a lot to the table that will benefit your applications.&lt;/p&gt;
+
+&lt;h1 id=&quot;1-data-integrity&quot;&gt;1. Data integrity&lt;/h1&gt;
+
+&lt;p&gt;As messages such as your order request as stored in the message and service bus, it’ll remain intact all the way from the frontend until the order is completed. This can be as mentioned, crucial depending on your application and is especially important when dealing with financial applications or sensitive/urgent data.&lt;/p&gt;
+
+&lt;h1 id=&quot;2-load-balancing&quot;&gt;2. Load balancing&lt;/h1&gt;
+
+&lt;p&gt;Rather than talking directly to an API from the frontend, your service bus handles the work. Depending on the scale of your project this can heavily minimize your load and risks for requests not going through due to overloaded servers. Instead you can configure your service bus to queue messages and talk to your API for example in a timely manner, one at a time, in the order that they were received.&lt;/p&gt;
+
+&lt;h1 id=&quot;3-decoupling&quot;&gt;3. Decoupling&lt;/h1&gt;
+
+&lt;p&gt;Because messages and services are &lt;strong&gt;decoupled&lt;/strong&gt; or seperated from each other, the client does not need to wait for a response as opposed to direct contact with an API where everything freezes until the API response has been received. This leads to a better user-experience for the client (customer) and creates a “flow” through the whole process.&lt;/p&gt;
+
+&lt;h1 id=&quot;drawbacks&quot;&gt;Drawbacks&lt;/h1&gt;
+
+&lt;p&gt;The main drawback of using a service bus comes down to single-point-of-failure. What I mean by this is in short terms; if the service bus fails, everything fails. Since everything will most likely be linked to towards your service bus, if something were to happen to it and it would seize to function as expected, all connected services would also raise issues. This is something that can be minimized or even avoided altogether though by utilizing solid monitoring and exception handling techniques.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Service buses can be a great way to maintain a great user experience in your application by ensuring secure data delivery whilst also minimizing peak load towards your backend.&lt;/p&gt;</content><author><name></name></author><category term="cloud" /><category term="azure" /><category term="azure-service-bus" /><summary type="html">What is a service bus</summary></entry><entry><title type="html">Azure Static Web Apps with CosmosDB &amp;amp; React</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html" rel="alternate" type="text/html" title="Azure Static Web Apps with CosmosDB &amp;amp; React" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/22/azure-static-web-apps-with-cosmosdb-and-react.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In today’s blogpost I’m going to, as mentioned in the previous post be going through how to actually implement and deploy a CosmosDB database to a webpage. I’m going to be doing this by using &lt;a href=&quot;https://azure.microsoft.com/en-us/services/app-service/static/&quot;&gt;Azure Static Web Apps&lt;/a&gt; to bundle together both the API and Frontend together.&lt;/p&gt;
 
 &lt;h1 id=&quot;getting-started&quot;&gt;Getting started&lt;/h1&gt;
 
-&lt;p&gt;It’s really not that difficult a basic version of this, start by creating your &lt;strong&gt;Static Web App&lt;/strong&gt;:
+&lt;p&gt;It’s really not that difficult accomplish this, start by creating your &lt;strong&gt;Static Web App&lt;/strong&gt;:
 &lt;img src=&quot;https://i.ibb.co/2gK98GL/t34Aj38.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Be sure to select your deployment type of choice, I’m going to be using GitHub &amp;amp; GitHub Actions. Sign in to GitHub and authorize access to your account.
 Once that’s done, select the repository your project exists in.&lt;/p&gt;
 
-&lt;p&gt;Next, select your frontend framework of choice under build presets, I’m going to be using React.&lt;br /&gt;
+&lt;p&gt;Next, select your frontend framework of choice under build presets, I’m going to be using React.
 The next step is very important, under app location, put the name of the folder which contains your frontend, in my case, it’s named “frontend”.
-Do the same thing for “api location”, enter the name of the folder which contains your api or &lt;strong&gt;Azure Function&lt;/strong&gt;.\&lt;/p&gt;
+Do the same thing for “api location”, enter the name of the folder which contains your api or &lt;strong&gt;Azure Function&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;This should look something like this:
 &lt;img src=&quot;https://i.ibb.co/tmYLSW0/jWmIjtS.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;When that’s done you can hit create and Azure will automatically create a workflow file in your repository to deploy your fullstack application to the cloud also known as &lt;strong&gt;CI/CD&lt;/strong&gt;.&lt;/p&gt;
-
+&lt;p&gt;When that’s done you can hit create and Azure will automatically create a &lt;strong&gt;CI/CD&lt;/strong&gt; workflow file in your repository to deploy your fullstack application to the cloud.&lt;/p&gt;
 &lt;h1 id=&quot;issues&quot;&gt;Issues&lt;/h1&gt;
 
 &lt;p&gt;Some issues can occur whilst trying to test and use an &lt;strong&gt;Azure Static Web App&lt;/strong&gt; this way. Firstly, &lt;strong&gt;MAKE SURE UR DB CONNECTION STRING IS SET!!!&lt;/strong&gt;. As you may recall from my last post, I put my &lt;strong&gt;database connection string&lt;/strong&gt; in a seperate file called &lt;strong&gt;local.settings.json&lt;/strong&gt;. This is something you manually have to do inside your &lt;strong&gt;Static Web App’s Configuration&lt;/strong&gt;. You can find this here:
 &lt;img src=&quot;https://i.ibb.co/jM88NXW/WDbh3Cx.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This was something I myself spent a long time trying to figure out why my database wasn’t working.&lt;/p&gt;
+&lt;p&gt;This was something I myself spent a long time trying to figure out as to why my database wasn’t working.&lt;/p&gt;
 
 &lt;p&gt;Next up, &lt;strong&gt;CORS&lt;/strong&gt;. In production you automatically gain access to your API, no modifications needed. However, when developing &amp;amp; testing locally you need to modify your connection to the &lt;strong&gt;API&lt;/strong&gt; a bit.&lt;/p&gt;
 
@@ -42,7 +69,7 @@ Do the same thing for “api location”, enter the name of the folder which con
 
 &lt;h1 id=&quot;pricing&quot;&gt;Pricing&lt;/h1&gt;
 
-&lt;p&gt;You might think a useful service like this comes with a fat price, but you’d be wrong. Other than the cost of maintaining the actual database &amp;amp;&amp;amp; azure function, it’s incredibly cheap regardless of project size. If you have a personal or really small projet, it’s even free! The pricing plan looks as follows:&lt;/p&gt;
+&lt;p&gt;You might think a useful service like this comes with a fat price, but you’d be wrong. Other than the cost of maintaining the actual database &amp;amp; azure function, it’s incredibly cheap regardless of project size. If you have a personal or really small project, it’s even free! The pricing plan looks as follows:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://i.ibb.co/MZ8fTdp/ejCdwxl.png&quot; alt=&quot;Azure Static Web Apps Pricing&quot; /&gt;&lt;/p&gt;
 
@@ -81,7 +108,7 @@ Next up, creating the actual database, sample principle, open the &lt;strong&gt;
 
 &lt;h1 id=&quot;the-function-api&quot;&gt;The function (API)&lt;/h1&gt;
 
-&lt;p&gt;As mentioned earlier, it is expected that you already have a C#/.NET function in which you can modify, whether that be locally or remotely, is up to you.
+&lt;p&gt;As mentioned earlier, it is expected that you already have a C#/.NET function that you can modify, whether that be locally or remotely, is up to you.
 I’m going to modify my HttpTrigger class to make it look as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -151,9 +178,11 @@ I’m going to modify my HttpTrigger class to make it look as follows:&lt;/p&gt;
 &lt;p&gt;As you may have noticed I’m using a &lt;strong&gt;CosmosClient&lt;/strong&gt; object in order to communicate with my database. To able to do this I first need to do two important things:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Dependency injection
-In order for the cosmosclient to work I need to inject it upon launch first.
-Doing this is quite simple and the code looks as follows:&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h1 id=&quot;dependency-injection&quot;&gt;Dependency injection&lt;/h1&gt;
+    &lt;p&gt;In order for the cosmosclient to work I need to inject it upon launch first.
+Doing this is quite simple and the code looks as follows:&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -193,8 +222,8 @@ Doing this is quite simple and the code looks as follows:&lt;/li&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Setup database connection string
-The client needs to know what database to talk to, and that is done by setting an &lt;strong&gt;environment variable&lt;/strong&gt;.
+    &lt;h1 id=&quot;setup-database-connection-string&quot;&gt;Setup database connection string&lt;/h1&gt;
+    &lt;p&gt;The client needs to know what database to talk to, and that is done by setting an &lt;strong&gt;environment variable&lt;/strong&gt;.
 To retrieve your connection string you can very easily, within VSCode get it from here:
 &lt;img src=&quot;https://i.ibb.co/b21kz8H/tvJ3fui.png&quot; alt=&quot;Retrieve Database Connection String&quot; /&gt;&lt;/p&gt;
 
@@ -206,8 +235,8 @@ To retrieve your connection string you can very easily, within VSCode get it fro
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The model
-In order to actually read and write something to the database, you need (in general) a model. Mine looks very simple and represents one Todo-Task:&lt;/p&gt;
+    &lt;h1 id=&quot;the-model&quot;&gt;The model&lt;/h1&gt;
+    &lt;p&gt;In order to actually read and write something to the database, you need (in general) a model. Mine looks very simple and represents one Todo-Task:&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 

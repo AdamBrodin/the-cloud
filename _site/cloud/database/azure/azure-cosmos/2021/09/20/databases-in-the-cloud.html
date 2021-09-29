@@ -138,7 +138,7 @@ Next up, creating the actual database, sample principle, open the <strong>comman
 
 <h1 id="the-function-api">The function (API)</h1>
 
-<p>As mentioned earlier, it is expected that you already have a C#/.NET function in which you can modify, whether that be locally or remotely, is up to you.
+<p>As mentioned earlier, it is expected that you already have a C#/.NET function that you can modify, whether that be locally or remotely, is up to you.
 I’m going to modify my HttpTrigger class to make it look as follows:</p>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
@@ -208,9 +208,11 @@ I’m going to modify my HttpTrigger class to make it look as follows:</p>
 <p>As you may have noticed I’m using a <strong>CosmosClient</strong> object in order to communicate with my database. To able to do this I first need to do two important things:</p>
 
 <ol>
-  <li>Dependency injection
-In order for the cosmosclient to work I need to inject it upon launch first.
-Doing this is quite simple and the code looks as follows:</li>
+  <li>
+    <h1 id="dependency-injection">Dependency injection</h1>
+    <p>In order for the cosmosclient to work I need to inject it upon launch first.
+Doing this is quite simple and the code looks as follows:</p>
+  </li>
 </ol>
 
 <div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
@@ -250,8 +252,8 @@ Doing this is quite simple and the code looks as follows:</li>
 
 <ol>
   <li>
-    <p>Setup database connection string
-The client needs to know what database to talk to, and that is done by setting an <strong>environment variable</strong>.
+    <h1 id="setup-database-connection-string">Setup database connection string</h1>
+    <p>The client needs to know what database to talk to, and that is done by setting an <strong>environment variable</strong>.
 To retrieve your connection string you can very easily, within VSCode get it from here:
 <img src="https://i.ibb.co/b21kz8H/tvJ3fui.png" alt="Retrieve Database Connection String" /></p>
 
@@ -263,8 +265,8 @@ To retrieve your connection string you can very easily, within VSCode get it fro
 </span></code></pre></div>    </div>
   </li>
   <li>
-    <p>The model
-In order to actually read and write something to the database, you need (in general) a model. Mine looks very simple and represents one Todo-Task:</p>
+    <h1 id="the-model">The model</h1>
+    <p>In order to actually read and write something to the database, you need (in general) a model. Mine looks very simple and represents one Todo-Task:</p>
   </li>
 </ol>
 
