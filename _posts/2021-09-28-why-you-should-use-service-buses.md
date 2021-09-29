@@ -34,3 +34,8 @@ The main drawback of using a service bus comes down to single-point-of-failure. 
 # Conclusion
 
 Service buses can be a great way to maintain a great user experience in your application by ensuring secure data delivery whilst also minimizing peak load towards your backend.
+
+# References
+
+- <https://www.serverless360.com/azure-service-bus>
+- <https://www.cetrixcloudservices.com/blog/enterprise-integration-pros-and-cons-of-enterprise-service-bus>
