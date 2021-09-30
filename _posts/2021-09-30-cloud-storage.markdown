@@ -72,8 +72,15 @@ If you want to retrieve an URL to the blob you've just created, you can easily d
 Console.WriteLine(blobClient.Uri);
 ```
 
+# Security
+
+Security is as previously mentioned always a concern when dealing with anything cloud-related, and storage is definitely not an exception. Luckily **Azure** does a lot of the heavy lifting for you. This comes from its **automatic encrypting** when storing data, and **decrypting** when fetching data.
+
 # Final words
+
+With **Azure blob storage** you can easily, whether you're using large video-files or small text-files upload, download, backup and so much more with your data, all in the cloud. This greatly enhances the development experience as you won't have to think about manual backups or scaling.
 
 # References
 
 - <https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/>
+- <https://cloudacademy.com/blog/how-does-azure-encrypt-data/>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-10-01T01:31:45+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud storage</title><link href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" rel="alternate" type="text/html" title="Cloud storage" /><published>2021-09-30T00:00:00+02:00</published><updated>2021-09-30T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-10-01T01:50:21+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud storage</title><link href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" rel="alternate" type="text/html" title="Cloud storage" /><published>2021-09-30T00:00:00+02:00</published><updated>2021-09-30T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In this post I’m going to be going over the basics of storing files in the cloud. To do this I’m going to be using an &lt;a href=&quot;https://azure.microsoft.com/services/storage/blobs/&quot;&gt;Azure Blob Storage&lt;/a&gt;, let’s get started!&lt;/p&gt;
 
@@ -62,7 +62,13 @@ If you want to retrieve an URL to the blob you’ve just created, you can easily
 &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blobClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h1 id=&quot;security&quot;&gt;Security&lt;/h1&gt;
+
+&lt;p&gt;Security is as previously mentioned always a concern when dealing with anything cloud-related, and storage is definitely not an exception. Luckily &lt;strong&gt;Azure&lt;/strong&gt; does a lot of the heavy lifting for you. This comes from its &lt;strong&gt;automatic encrypting&lt;/strong&gt; when storing data, and &lt;strong&gt;decrypting&lt;/strong&gt; when fetching data.&lt;/p&gt;
+
 &lt;h1 id=&quot;final-words&quot;&gt;Final words&lt;/h1&gt;
+
+&lt;p&gt;With &lt;strong&gt;Azure blob storage&lt;/strong&gt; you can easily, whether you’re using large video-files or small text-files upload, download, backup and so much more with your data, all in the cloud. This greatly enhances the development experience as you won’t have to think about manual backups or scaling.&lt;/p&gt;
 
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 
