@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Cloud storage | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Cloud storage" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-30T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cloud storage" />
+<script type="application/ld+json">
+{"headline":"Cloud storage","dateModified":"2021-09-30T00:00:00+02:00","datePublished":"2021-09-30T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html"},"description":"Introduction","url":"http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Cloud storage</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-30T00:00:00+02:00" itemprop="datePublished">
+        Sep 30, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="introduction">Introduction</h1>
+
+<p>In this post I’m going to be going over the basics of storing files in the cloud. To do this I’m going to be using an <a href="https://azure.microsoft.com/services/storage/blobs/">Azure Blob Storage</a>, let’s get started!</p>
+
+<h1 id="setting-up">Setting up</h1>
+
+<p>Start by creating a new storage account. Follow along as seen below:
+<img src="https://i.imgur.com/jgRc2EL.png" alt="Storage account overview" /></p>
+
+<p>Enter a unique <strong>storage account name</strong> and select the default settings for this simple example. For a real-life production example you’ll want to setup <strong>redundancy</strong> and go through all the other settings in detail.
+<img src="https://i.imgur.com/IKufXW1.png" alt="Storage account settings" /></p>
+
+<p>Continue the steps via <strong>review + create</strong> and finally hit the <strong>create</strong> button. After a few minutes your new storage account is available.</p>
+
+<h1 id="talking-to-the-storage-account">Talking to the storage account</h1>
+
+<p>You can communicate with your storage account through many different libraries and languages. I’m going to be demonstrating a basic example where you can <strong>upload</strong> an <strong>image</strong> and then retrieve the corresponding <strong>URL</strong> for it. Start by getting your <strong>connection string</strong>:</p>
+
+<p><img src="https://i.imgur.com/nCd61K1.png" alt="Connection string" />
+Copy that string and save it for later use.</p>
+
+<h1 id="project-setup">Project setup</h1>
+
+<p>Once that’s done, open up your <strong>.NET project</strong> and add the <strong>Azure Storage Blobs NuGet package</strong>.</p>
+
+<p>Quick-command: <code class="language-plaintext highlighter-rouge">dotnet add package Azure.Storage.Blobs</code></p>
+
+<p>For the sake of simplicity I’m just going to be accessing this <strong>connection string</strong> via a variable in the code. However this is something you <strong>NEVER</strong> should do in production or at all for that matter. Always store your sensitive keys/connection strings in environment variables. If you’d like to accomplish something similiar to do this you can use the following NuGet package: <a href="Microsoft.Extensions.Configuration.Json">https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/</a>.</p>
+
+<h1 id="talking-to-the-storage-account-1">Talking to the storage account</h1>
+
+<p>To establish a basic connection and retrieve a list of existing <strong>blobs</strong> for example is very simple.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">connectionString</span> <span class="p">=</span> <span class="s">"MY_CONNECTION_STRING"</span>
+<span class="kt">string</span> <span class="n">containerName</span> <span class="p">=</span> <span class="s">"MY_CONTAINER_NAME"</span><span class="p">;</span>
+
+<span class="n">BlobContainerClient</span> <span class="n">container</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">BlobContainerClient</span><span class="p">(</span><span class="n">connectionString</span><span class="p">,</span> <span class="n">containerName</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Replace <strong>MY_CONNECTION_STRING</strong> with the connection string you copied earlier and <strong>MY_CONTAINER_NAME</strong> with a name of your choosing, this could for example be called “photos”.</p>
+
+<h1 id="uploading-a-photo">Uploading a photo</h1>
+
+<p>First, add a photo of your choosing to the root folder of your project. My photo is going to be called “test_photo.png”. Next add the following piece of code:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Makes sure the container exists/isn't null</span>
+<span class="n">container</span><span class="p">.</span><span class="nf">CreateIfNotExists</span><span class="p">();</span>
+
+<span class="c1">// Naming</span>
+<span class="kt">string</span> <span class="n">blobName</span> <span class="p">=</span> <span class="s">"test_photo"</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">fileName</span> <span class="p">=</span> <span class="s">"test_photo.png"</span><span class="p">;</span>
+
+<span class="c1">/// Upload</span>
+<span class="n">BlobClient</span> <span class="n">blobClient</span> <span class="p">=</span> <span class="n">container</span><span class="p">.</span><span class="nf">GetBlobClient</span><span class="p">(</span><span class="n">blobName</span><span class="p">);</span>
+<span class="n">blobClient</span><span class="p">.</span><span class="nf">Upload</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This code makes sure your container is valid, then uploads (in this case) a local photo as a <strong>blob</strong> with a set name.
+If you want to retrieve an URL to the blob you’ve just created, you can easily do so with the following:</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Prints https://{Storage Account Name}.blob.core.windows.net/{containerName}/{blobName}</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">blobClient</span><span class="p">.</span><span class="n">Uri</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h1 id="final-words">Final words</h1>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/">https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#files">files</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#storage">storage</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Why you should use service buses
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>

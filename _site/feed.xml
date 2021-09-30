@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-09-29T18:46:45+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Why you should use service buses</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" rel="alternate" type="text/html" title="Why you should use service buses" /><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">&lt;h1 id=&quot;what-is-a-service-bus&quot;&gt;What is a service bus&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-10-01T01:31:45+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud storage</title><link href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" rel="alternate" type="text/html" title="Cloud storage" /><published>2021-09-30T00:00:00+02:00</published><updated>2021-09-30T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In this post I’m going to be going over the basics of storing files in the cloud. To do this I’m going to be using an &lt;a href=&quot;https://azure.microsoft.com/services/storage/blobs/&quot;&gt;Azure Blob Storage&lt;/a&gt;, let’s get started!&lt;/p&gt;
+
+&lt;h1 id=&quot;setting-up&quot;&gt;Setting up&lt;/h1&gt;
+
+&lt;p&gt;Start by creating a new storage account. Follow along as seen below:
+&lt;img src=&quot;https://i.imgur.com/jgRc2EL.png&quot; alt=&quot;Storage account overview&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Enter a unique &lt;strong&gt;storage account name&lt;/strong&gt; and select the default settings for this simple example. For a real-life production example you’ll want to setup &lt;strong&gt;redundancy&lt;/strong&gt; and go through all the other settings in detail.
+&lt;img src=&quot;https://i.imgur.com/IKufXW1.png&quot; alt=&quot;Storage account settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Continue the steps via &lt;strong&gt;review + create&lt;/strong&gt; and finally hit the &lt;strong&gt;create&lt;/strong&gt; button. After a few minutes your new storage account is available.&lt;/p&gt;
+
+&lt;h1 id=&quot;talking-to-the-storage-account&quot;&gt;Talking to the storage account&lt;/h1&gt;
+
+&lt;p&gt;You can communicate with your storage account through many different libraries and languages. I’m going to be demonstrating a basic example where you can &lt;strong&gt;upload&lt;/strong&gt; an &lt;strong&gt;image&lt;/strong&gt; and then retrieve the corresponding &lt;strong&gt;URL&lt;/strong&gt; for it. Start by getting your &lt;strong&gt;connection string&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/nCd61K1.png&quot; alt=&quot;Connection string&quot; /&gt;
+Copy that string and save it for later use.&lt;/p&gt;
+
+&lt;h1 id=&quot;project-setup&quot;&gt;Project setup&lt;/h1&gt;
+
+&lt;p&gt;Once that’s done, open up your &lt;strong&gt;.NET project&lt;/strong&gt; and add the &lt;strong&gt;Azure Storage Blobs NuGet package&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Quick-command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dotnet add package Azure.Storage.Blobs&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For the sake of simplicity I’m just going to be accessing this &lt;strong&gt;connection string&lt;/strong&gt; via a variable in the code. However this is something you &lt;strong&gt;NEVER&lt;/strong&gt; should do in production or at all for that matter. Always store your sensitive keys/connection strings in environment variables. If you’d like to accomplish something similiar to do this you can use the following NuGet package: &lt;a href=&quot;Microsoft.Extensions.Configuration.Json&quot;&gt;https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;talking-to-the-storage-account-1&quot;&gt;Talking to the storage account&lt;/h1&gt;
+
+&lt;p&gt;To establish a basic connection and retrieve a list of existing &lt;strong&gt;blobs&lt;/strong&gt; for example is very simple.&lt;/p&gt;
+
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionString&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MY_CONNECTION_STRING&quot;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;containerName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MY_CONTAINER_NAME&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;BlobContainerClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;BlobContainerClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connectionString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;containerName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Replace &lt;strong&gt;MY_CONNECTION_STRING&lt;/strong&gt; with the connection string you copied earlier and &lt;strong&gt;MY_CONTAINER_NAME&lt;/strong&gt; with a name of your choosing, this could for example be called “photos”.&lt;/p&gt;
+
+&lt;h1 id=&quot;uploading-a-photo&quot;&gt;Uploading a photo&lt;/h1&gt;
+
+&lt;p&gt;First, add a photo of your choosing to the root folder of your project. My photo is going to be called “test_photo.png”. Next add the following piece of code:&lt;/p&gt;
+
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Makes sure the container exists/isn&apos;t null&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateIfNotExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Naming&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blobName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test_photo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test_photo.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;/// Upload&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;BlobClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blobClient&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetBlobClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blobName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;blobClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Upload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This code makes sure your container is valid, then uploads (in this case) a local photo as a &lt;strong&gt;blob&lt;/strong&gt; with a set name.
+If you want to retrieve an URL to the blob you’ve just created, you can easily do so with the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Prints https://{Storage Account Name}.blob.core.windows.net/{containerName}/{blobName}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blobClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;final-words&quot;&gt;Final words&lt;/h1&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/&quot;&gt;https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="cloud" /><category term="storage" /><category term="files" /><summary type="html">Introduction</summary></entry><entry><title type="html">Why you should use service buses</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" rel="alternate" type="text/html" title="Why you should use service buses" /><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">&lt;h1 id=&quot;what-is-a-service-bus&quot;&gt;What is a service bus&lt;/h1&gt;
 
 &lt;p&gt;A service bus is something that is used to decouple your application and its services from one another. In essence a service bus acts as a &lt;strong&gt;message broker&lt;/strong&gt;, to send and receive messages across your whole application pipeline.&lt;/p&gt;
 
