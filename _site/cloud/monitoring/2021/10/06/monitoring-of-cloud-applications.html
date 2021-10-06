@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Monitoring of cloud applications | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Monitoring of cloud applications" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-06T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Monitoring of cloud applications" />
+<script type="application/ld+json">
+{"headline":"Monitoring of cloud applications","dateModified":"2021-10-06T00:00:00+02:00","datePublished":"2021-10-06T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html"},"description":"Introduction","url":"http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Monitoring of cloud applications</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-10-06T00:00:00+02:00" itemprop="datePublished">
+        Oct 6, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="introduction">Introduction</h1>
+
+<p>In today’s post i’m going to be looking at monitoring a cloud application in order to achieve better insights into performance, load, security and much more valuable information for my project. Specifically an existing Azure Static Web App from a previous <a href="https://adambrodin.github.io/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/21/azure-static-web-apps-with-cosmosdb-and-react.html">blogpost</a>.</p>
+
+<h1 id="enabling-monitoring">Enabling monitoring</h1>
+
+<p>If application insights is not enabled by default, you can very easily enable it for your <strong>Static Web App</strong> by doing the following:
+<img src="https://i.imgur.com/sLB5jIv.png" alt="Application Insights" /></p>
+
+<p>And that’s all it takes, your application now automatically tracks things such as <strong>response time, availability and amount of requests</strong>.</p>
+
+<h1 id="querying-data">Querying data</h1>
+
+<p>To be able to read data, both manually and through queries you have to open up your newly created <strong>Application Insights</strong> resource. From the start-page of the portal:
+<img src="https://i.imgur.com/eNVDXIJ.png" alt="Portal startpage" /></p>
+
+<p>The newly created resource:
+<img src="https://i.imgur.com/6uZgLFW.png" alt="Insights Resource" /></p>
+
+<p>From here on you can find loads of data, configuration settings and metrics. To able to query your metrics you have to open up the “logs” page:
+<img src="https://i.imgur.com/ZMQtZTT.png" alt="Logs page" /></p>
+
+<p>Here you can find <strong>a lot</strong> of different <strong>pre-defined</strong> queries written using the <strong>Kusto Query Language</strong> which is similiar to SQL. For example, if you wanted to see the load (requests) for your webpage for the past day as to identify highs and lows for your traffic, you could write it very simply as follows:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requests</span>
+<span class="o">|</span> <span class="n">summarize</span> <span class="n">totalCount</span><span class="o">=</span><span class="k">sum</span><span class="p">(</span><span class="n">itemCount</span><span class="p">)</span> <span class="k">by</span> <span class="n">bin</span><span class="p">(</span><span class="nb">timestamp</span><span class="p">,</span> <span class="mi">30</span><span class="n">m</span><span class="p">)</span>
+<span class="o">|</span> <span class="n">render</span> <span class="n">timechart</span>
+</code></pre></div></div>
+
+<p>Or maybe you want to identify issues with your website, you can query the most common exceptions that cause a page request to fail:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requests</span>
+<span class="o">|</span> <span class="k">where</span> <span class="nb">timestamp</span> <span class="o">&gt;</span> <span class="n">ago</span><span class="p">(</span><span class="mi">1</span><span class="n">h</span><span class="p">)</span> <span class="k">and</span> <span class="n">success</span> <span class="o">==</span> <span class="k">false</span>
+<span class="o">|</span> <span class="k">join</span> <span class="n">kind</span><span class="o">=</span> <span class="k">inner</span> <span class="p">(</span>
+<span class="n">exceptions</span>
+<span class="o">|</span> <span class="k">where</span> <span class="nb">timestamp</span> <span class="o">&gt;</span> <span class="n">ago</span><span class="p">(</span><span class="mi">1</span><span class="n">h</span><span class="p">)</span>
+<span class="p">)</span> <span class="k">on</span> <span class="n">operation_Id</span>
+<span class="o">|</span> <span class="n">project</span> <span class="n">exceptionType</span> <span class="o">=</span> <span class="k">type</span><span class="p">,</span> <span class="n">failedMethod</span> <span class="o">=</span> <span class="k">method</span><span class="p">,</span> <span class="n">requestName</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span> <span class="n">requestDuration</span> <span class="o">=</span> <span class="n">duration</span>
+</code></pre></div></div>
+
+<p>As you can see, there is a lot of potential with <strong>Kusto Queries</strong> and you can get insights for pretty much anything. Insights come pre-defined with a plethera of tables (data) that you can access through your queries, and they can be found here:
+<img src="https://i.imgur.com/l1eYupX.png" alt="Tables" /></p>
+
+<p>Both the <strong>requests</strong> and <strong>exceptions</strong> table as I used in my example queries lie here.</p>
+
+<h1 id="security-benefits">Security benefits</h1>
+
+<p>Implementing analytics and insights into your application can be a very efficient tool in order to identify security flaws and attacks. For example, a common attack, <strong>Denial of Service attack</strong> could be detected early on via <strong>alerts</strong> that get triggered once the requests for that hour exceed a certain threshold. That would lead to a higher chance of the website staying alive and action could be taken as soon as an attack was detected. In the end, this would mean more uptime = more money.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>In this post I’ve gone through the basics of monitoring a cloud application via <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"><strong>Azure Application Insights</strong></a> and demonstrated how easy it can be to setup and utilizie to maximize uptime, and quickly analyze problems.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/static-web-apps/monitor">https://docs.microsoft.com/en-us/azure/static-web-apps/monitor</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#monitoring">monitoring</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Cloud storage
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-10-01T01:50:21+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Cloud storage</title><link href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" rel="alternate" type="text/html" title="Cloud storage" /><published>2021-09-30T00:00:00+02:00</published><updated>2021-09-30T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/the-cloud/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/the-cloud/" rel="alternate" type="text/html" /><updated>2021-10-06T16:08:49+02:00</updated><id>http://localhost:4000/the-cloud/feed.xml</id><title type="html">The Cloud</title><subtitle>A blog about the cloud and its services.</subtitle><entry><title type="html">Monitoring of cloud applications</title><link href="http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html" rel="alternate" type="text/html" title="Monitoring of cloud applications" /><published>2021-10-06T00:00:00+02:00</published><updated>2021-10-06T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;In today’s post i’m going to be looking at monitoring a cloud application in order to achieve better insights into performance, load, security and much more valuable information for my project. Specifically an existing Azure Static Web App from a previous &lt;a href=&quot;https://adambrodin.github.io/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/21/azure-static-web-apps-with-cosmosdb-and-react.html&quot;&gt;blogpost&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;enabling-monitoring&quot;&gt;Enabling monitoring&lt;/h1&gt;
+
+&lt;p&gt;If application insights is not enabled by default, you can very easily enable it for your &lt;strong&gt;Static Web App&lt;/strong&gt; by doing the following:
+&lt;img src=&quot;https://i.imgur.com/sLB5jIv.png&quot; alt=&quot;Application Insights&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And that’s all it takes, your application now automatically tracks things such as &lt;strong&gt;response time, availability and amount of requests&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;querying-data&quot;&gt;Querying data&lt;/h1&gt;
+
+&lt;p&gt;To be able to read data, both manually and through queries you have to open up your newly created &lt;strong&gt;Application Insights&lt;/strong&gt; resource. From the start-page of the portal:
+&lt;img src=&quot;https://i.imgur.com/eNVDXIJ.png&quot; alt=&quot;Portal startpage&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The newly created resource:
+&lt;img src=&quot;https://i.imgur.com/6uZgLFW.png&quot; alt=&quot;Insights Resource&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From here on you can find loads of data, configuration settings and metrics. To able to query your metrics you have to open up the “logs” page:
+&lt;img src=&quot;https://i.imgur.com/ZMQtZTT.png&quot; alt=&quot;Logs page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here you can find &lt;strong&gt;a lot&lt;/strong&gt; of different &lt;strong&gt;pre-defined&lt;/strong&gt; queries written using the &lt;strong&gt;Kusto Query Language&lt;/strong&gt; which is similiar to SQL. For example, if you wanted to see the load (requests) for your webpage for the past day as to identify highs and lows for your traffic, you could write it very simply as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;summarize&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;itemCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;timestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timechart&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or maybe you want to identify issues with your website, you can query the most common exceptions that cause a page request to fail:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;exceptions&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;operation_Id&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exceptionType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;failedMethod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, there is a lot of potential with &lt;strong&gt;Kusto Queries&lt;/strong&gt; and you can get insights for pretty much anything. Insights come pre-defined with a plethera of tables (data) that you can access through your queries, and they can be found here:
+&lt;img src=&quot;https://i.imgur.com/l1eYupX.png&quot; alt=&quot;Tables&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Both the &lt;strong&gt;requests&lt;/strong&gt; and &lt;strong&gt;exceptions&lt;/strong&gt; table as I used in my example queries lie here.&lt;/p&gt;
+
+&lt;h1 id=&quot;security-benefits&quot;&gt;Security benefits&lt;/h1&gt;
+
+&lt;p&gt;Implementing analytics and insights into your application can be a very efficient tool in order to identify security flaws and attacks. For example, a common attack, &lt;strong&gt;Denial of Service attack&lt;/strong&gt; could be detected early on via &lt;strong&gt;alerts&lt;/strong&gt; that get triggered once the requests for that hour exceed a certain threshold. That would lead to a higher chance of the website staying alive and action could be taken as soon as an attack was detected. In the end, this would mean more uptime = more money.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;In this post I’ve gone through the basics of monitoring a cloud application via &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview&quot;&gt;&lt;strong&gt;Azure Application Insights&lt;/strong&gt;&lt;/a&gt; and demonstrated how easy it can be to setup and utilizie to maximize uptime, and quickly analyze problems.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview&quot;&gt;https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/static-web-apps/monitor&quot;&gt;https://docs.microsoft.com/en-us/azure/static-web-apps/monitor&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="cloud" /><category term="monitoring" /><summary type="html">Introduction</summary></entry><entry><title type="html">Cloud storage</title><link href="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html" rel="alternate" type="text/html" title="Cloud storage" /><published>2021-09-30T00:00:00+02:00</published><updated>2021-09-30T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/storage/files/2021/09/30/cloud-storage.html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;In this post I’m going to be going over the basics of storing files in the cloud. To do this I’m going to be using an &lt;a href=&quot;https://azure.microsoft.com/services/storage/blobs/&quot;&gt;Azure Blob Storage&lt;/a&gt;, let’s get started!&lt;/p&gt;
 
@@ -74,6 +132,7 @@ If you want to retrieve an URL to the blob you’ve just created, you can easily
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/&quot;&gt;https://docs.microsoft.com/en-us/learn/paths/store-data-in-azure/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cloudacademy.com/blog/how-does-azure-encrypt-data/&quot;&gt;https://cloudacademy.com/blog/how-does-azure-encrypt-data/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name></name></author><category term="cloud" /><category term="storage" /><category term="files" /><summary type="html">Introduction</summary></entry><entry><title type="html">Why you should use service buses</title><link href="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html" rel="alternate" type="text/html" title="Why you should use service buses" /><published>2021-09-28T00:00:00+02:00</published><updated>2021-09-28T00:00:00+02:00</updated><id>http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses</id><content type="html" xml:base="http://localhost:4000/the-cloud/cloud/azure/azure-service-bus/2021/09/28/why-you-should-use-service-buses.html">&lt;h1 id=&quot;what-is-a-service-bus&quot;&gt;What is a service bus&lt;/h1&gt;
 
 &lt;p&gt;A service bus is something that is used to decouple your application and its services from one another. In essence a service bus acts as a &lt;strong&gt;message broker&lt;/strong&gt;, to send and receive messages across your whole application pipeline.&lt;/p&gt;
