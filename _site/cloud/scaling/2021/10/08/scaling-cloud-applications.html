@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Scaling cloud applications | The Cloud</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Scaling cloud applications" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="http://localhost:4000/the-cloud/cloud/scaling/2021/10/08/scaling-cloud-applications.html" />
+<meta property="og:url" content="http://localhost:4000/the-cloud/cloud/scaling/2021/10/08/scaling-cloud-applications.html" />
+<meta property="og:site_name" content="The Cloud" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-08T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Scaling cloud applications" />
+<script type="application/ld+json">
+{"headline":"Scaling cloud applications","dateModified":"2021-10-08T00:00:00+02:00","datePublished":"2021-10-08T00:00:00+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/the-cloud/cloud/scaling/2021/10/08/scaling-cloud-applications.html"},"description":"Introduction","url":"http://localhost:4000/the-cloud/cloud/scaling/2021/10/08/scaling-cloud-applications.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/the-cloud/feed.xml" title="The Cloud" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/the-cloud/assets/css/main.css">
+<link rel="stylesheet" href="/the-cloud/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/the-cloud/">The Cloud</a>
+
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:adambrodindeveloper@gmail.com">adambrodindeveloper@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/the-cloud/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">Scaling cloud applications</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-10-08T00:00:00+02:00" itemprop="datePublished">
+        Oct 8, 2021
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="introduction">Introduction</h1>
+
+<p>In todays blog-post i’m going to be going over how you stress-test your <strong>cloud application</strong> to see how well it <strong>scales</strong>. This is something that can overlooked when developing and testing in a development environment, only to crash your services due to the load being too much, so it’s good to test the performance of your application before deploying to production.</p>
+
+<p>In my case i’m going to be <strong>stress-testing</strong> an <strong>Azure Function</strong> that lies in an <strong>Azure Static Web App</strong>, more details on this can be seen in my <a href="https://adambrodin.github.io/the-cloud/cloud/azure/azure-static-web-apps/react/2021/09/21/azure-static-web-apps-with-cosmosdb-and-react.html">previous blogpost</a>.</p>
+
+<p>Let’s start by comparing different scaling methods.</p>
+
+<h1 id="horizontal-scaling">Horizontal Scaling</h1>
+
+<p>Horizontal scaling is a scaling method in which the <strong>computing power</strong> increases by adding <strong>additional</strong> hardware or servers. This is done without altering or improving your current hardware, the hardware only increase in <strong>quantity, not quality</strong>.</p>
+
+<h1 id="vertical-scaling">Vertical Scaling</h1>
+
+<p>Vertical scaling on the other hand does the opposite, it keeps and upgrades the current hardware infrastructure. With vertical scaling, you build upon your servers, add more ram, better or more CPU’s etc.</p>
+
+<h1 id="drawbacks">Drawbacks</h1>
+
+<p>Regardless of what scaling strategy you pick there are gonna be some drawbacks. With <strong>horizontal scaling</strong> the major drawbacks are: <strong>data consistency</strong> due to the data existing in many different servers at once and higher costs as a result of more development time and the cost of servers are more expensive when it comes to price vs performance.</p>
+
+<p>And with <strong>vertical scaling</strong> some major drawbacks include the possibility of additional downtime due to the low quantity or servers running at once. Furthermore there is an increased risk of data-loss or major downtime due to hardware failure.</p>
+
+<h1 id="stress-testing">Stress-testing</h1>
+
+<p>Now that you’ve gotten some insights in how to structure your scaling, let’s do some practical testing. I’m going to be using a <a href="https://loader.io/"><strong>free load-testing service</strong></a>.</p>
+
+<h2 id="setting-up">Setting up</h2>
+
+<p>Start by creating an account at <strong>loader.io</strong> and then add your the URL for your website. Next we have to verify the <strong>loader.io</strong> connection inside our <strong>azure function</strong>. We can do this easily by first creating a <strong>proxies.json file</strong> in the root directory of the function app:
+<img src="https://i.imgur.com/eivAEEN.png" alt="Proxies Json" /></p>
+
+<p>And adding the following piece of code:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json.schemastore.org/proxies"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"proxies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"loaderio-verifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchCondition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"GET"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"route"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/loaderio-verification-token"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"responseOverrides"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"response.body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loaderio-verification-token"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response.headers.Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Replace “loaderio-verification-token” with the token found on the <strong>loader.io</strong> website:
+<img src="https://i.imgur.com/Ek2Cc6G.png" alt="Verification token" /></p>
+
+<p>Also add this to your <strong>.csproj</strong> project file:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;None</span> <span class="na">Update=</span><span class="s">"proxies.json"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;CopyToOutputDirectory&gt;</span>PreserveNewest<span class="nt">&lt;/CopyToOutputDirectory&gt;</span>
+<span class="nt">&lt;/None&gt;</span>
+</code></pre></div></div>
+
+<p>It is also very recommended that you use environment keys when dealing with api keys/token and this can be done easily with the following:</p>
+
+<ul>
+  <li>Add the key to <strong>local.settings.json</strong>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"loaderio_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loaderio-verification-token"</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Change <strong>proxies.json</strong> to access the key:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"route"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/%loaderio_token%"</span><span class="w">
+</span><span class="nl">"response.body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%loaderio_token%"</span><span class="err">,</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>And that’s it, your loader.io verification should be all set up. You can test this out by hitting “verify” on the <strong>loader.io</strong> website. After that all you have to do is start the tests, let them run for a few minutes and analyze the results by viewing the metrics, or creating a custom query as mentioned in my <a href="https://adambrodin.github.io/the-cloud/cloud/monitoring/2021/10/05/monitoring-of-cloud-applications.html">previous post</a></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Load-testing is an easy, essential and very important step when developing a production application to identify performance issues and make sure your deployment and production environment works as smoothly as possible no matter the amount of traffic.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="https://touchstonesecurity.com/horizontal-vs-vertical-scaling-what-you-need-to-know/">https://touchstonesecurity.com/horizontal-vs-vertical-scaling-what-you-need-to-know/</a></li>
+  <li><a href="https://www.rootstrap.com/blog/horizontal-vs-vertical-scaling/">https://www.rootstrap.com/blog/horizontal-vs-vertical-scaling/</a></li>
+  <li><a href="https://mikhail.io/2019/07/load-testing-azure-functions-with-loaderio/">https://mikhail.io/2019/07/load-testing-azure-functions-with-loaderio/</a></li>
+  <li><a href="https://blog.danielreis.dev/using-function-proxies-with-azure-static-web-apps">https://blog.danielreis.dev/using-function-proxies-with-azure-static-web-apps</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#cloud">cloud</a>
+            </li>
+          
+            <li class="post-category">
+              
+              <a href="/the-cloud/categories/#scaling">scaling</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/the-cloud/cloud/monitoring/2021/10/06/monitoring-of-cloud-applications.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> Monitoring of cloud applications
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>A blog about the cloud and its services.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>
